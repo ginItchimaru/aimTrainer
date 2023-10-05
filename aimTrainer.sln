@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aimTrainer", "aimTrainer.vcxproj", "{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CBD6B68B-BF6F-4535-9561-26D34DD70FD3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}.Debug|x64.ActiveCfg = Debug|x64
+		{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}.Debug|x64.Build.0 = Debug|x64
+		{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}.Debug|x86.ActiveCfg = Debug|Win32
+		{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}.Debug|x86.Build.0 = Debug|Win32
+		{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}.Release|x64.ActiveCfg = Release|x64
+		{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}.Release|x64.Build.0 = Release|x64
+		{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}.Release|x86.ActiveCfg = Release|Win32
+		{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FC75B19-0F93-4DEF-83A5-A02BF050F98A}
+	EndGlobalSection
+EndGlobal

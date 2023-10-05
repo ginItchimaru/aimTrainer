@@ -1,0 +1,7 @@
+﻿  game.cpp
+  main.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 20 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  aimTrainer.vcxproj -> C:\Users\linoi\scripts\C++\sfmlProjects\aimTrainer\x64\Release\aimTrainer.exe
