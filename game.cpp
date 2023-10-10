@@ -8,7 +8,7 @@ void Game::initVariables() {
 	this->window = nullptr;
 
 	//Game logic
-	this->maxTargets = 10;
+	this->maxTargets = 5;
 }
 
 void Game::initWindow() {
@@ -86,6 +86,7 @@ void Game::updateMousePosition() {
 
 	this->mousePosWindow = sf::Mouse::getPosition(*this->window);	// mouse pos as integer
 	this->mousePosView = this->window->mapPixelToCoords(this->mousePosWindow);	// mouse pos as float
+	//std::cout << this->mousePosWindow.y << mousePosWindow.x << "\n";
 }
 
 void Game::updateTargets() {
@@ -95,7 +96,44 @@ void Game::updateTargets() {
 		this->spawnTarget();
 	}
 
+	//bool moveDown = false;
+	bool moveUp = false;
+	for (int i = 0; i < this->targets.size(); i++) {
 
+		bool deleted = false;
+
+		if (not moveUp) {
+		
+			this->targets[i].move(0.f, 3.f);
+		}
+
+		//Checking for left mouse button
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			//Checking if mouse is on the object while clicked
+			if (this->targets[i].getGlobalBounds().contains(this->mousePosView)) {
+
+				deleted = true;
+			}		
+		}
+
+		if (this->targets[i].getPosition().y > this->window->getSize().y) {
+
+			deleted = true;
+			//moveUp = true;
+			//this->targets[i].move(0.f, -6.f);
+		}
+
+		if (moveUp and this->targets[i].getPosition().y < 200.f) {
+
+			moveUp = true;
+		}
+
+		//Deleting object
+		if (deleted) {
+
+			this->targets.erase(this->targets.begin() + i);
+		}
+	}
 }
 
 void Game::update() {
