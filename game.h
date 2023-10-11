@@ -52,6 +52,6 @@ public:
 	void updateTargets();
 	void update();
 	
-	void renderTargets();
+	void renderTargets(sf::RenderTarget& target);
 	void render();
 };
