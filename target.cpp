@@ -1,12 +1,12 @@
 #include "target.h"
 
-void target::initVariables() {
+void Target::initVariables() {
 
 
 
 }
 
-void target::initTargets() {
+void Target::initTargets() {
 
 	this->targetRect.setPosition(100.f, 100.f);
 	this->targetRect.setSize(sf::Vector2f(50.f, 50.f));
@@ -14,14 +14,26 @@ void target::initTargets() {
 
 }
 
-target::target() {
+Target::Target() {
 	
 	this->initVariables();
 	this->initTargets();
 
 }
 
-target::~target() {
+Target::~Target() {
+
+
+
+}
+
+void Target::update(sf::RenderTarget* target) {
+
+
+
+}
+
+void Target::render(sf::RenderTarget* target) {
 
 
 

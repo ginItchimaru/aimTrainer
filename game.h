@@ -4,12 +4,6 @@
 #include <vector>
 #include <ctime>
 
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
-
 #include "target.h"
 
 
@@ -21,6 +15,8 @@ private:
 	sf::RenderWindow* window;
 	sf::VideoMode videoMode;
 	sf::Event event;
+
+	Target target;
 
 	//Mouse positions
 	sf::Vector2i mousePosWindow;

@@ -15,11 +15,9 @@ void Game::initWindow() {
 	this->videoMode.width = 800;
 
 	this->window = new sf::RenderWindow(this->videoMode, "aim trainer", sf::Style::Titlebar | sf::Style::Close);
-
 	this->window->setFramerateLimit(144);
 
 }
-
 
 
 //Constructors / Destructors
@@ -43,6 +41,7 @@ const bool Game::running() const {
 	return this->window->isOpen();
 
 }
+
 
 //Functions
 void Game::pollEvents() {
@@ -75,12 +74,13 @@ void Game::updateMousePosition() {
 }
 
 
-
 void Game::update() {
 
 	this->pollEvents();
 
 	this->updateMousePosition();
+
+	this->target.update(this->window);
 
 }
 
@@ -89,7 +89,8 @@ void Game::render() {
 
 	this->window->clear();
 
-	//Draw game objects
+	//Render
+	this->target.render(this->window);
 
 	this->window->display();
 

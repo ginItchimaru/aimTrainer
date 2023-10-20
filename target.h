@@ -7,7 +7,7 @@
 #include <SFML/Network.hpp>
 
 
-class target {
+class Target {
 
 private:
 	std::vector<sf::RectangleShape> targetRects;
@@ -18,8 +18,11 @@ private:
 
 
 public:
-	target();
-	virtual ~target();
+	Target();
+	virtual ~Target();
+
+	void update(sf::RenderTarget* target);
+	void render(sf::RenderTarget* target);
 
 };
 
