@@ -10,15 +10,15 @@
 class Target {
 
 private:
-	std::vector<sf::RectangleShape> targetRects;
-	sf::RectangleShape targetRect;
+	std::vector<sf::CircleShape> circleShapes;
+	sf::CircleShape circleShape;
 
 	void initVariables();
-	void initTargets();
+	void initTargets(const sf::RenderWindow& window);
 
 
 public:
-	Target();
+	Target(const sf::RenderWindow& window);
 	virtual ~Target();
 
 	void update(sf::RenderTarget* target);

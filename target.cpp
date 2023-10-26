@@ -6,18 +6,24 @@ void Target::initVariables() {
 
 }
 
-void Target::initTargets() {
+void Target::initTargets(const sf::RenderWindow& window) {
 
-	this->targetRect.setPosition(100.f, 100.f);
-	this->targetRect.setSize(sf::Vector2f(50.f, 50.f));
-	this->targetRect.setFillColor(sf::Color::Red);
+	this->circleShape.setRadius(10.f);
+	sf::Color color(255, 0, 0);
+	this->circleShape.setFillColor(color);
+	this->circleShape.setPosition(
+		sf::Vector2f(
+			static_cast<float>(rand() % window.getSize().x - this->circleShape.getGlobalBounds().width),
+			static_cast<float>(rand() % window.getSize().y - this->circleShape.getGlobalBounds().height)
+		)
+	);
 
 }
 
-Target::Target() {
+Target::Target(const sf::RenderWindow& window) {
 	
 	this->initVariables();
-	this->initTargets();
+	this->initTargets(window);
 
 }
 
