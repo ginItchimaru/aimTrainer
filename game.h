@@ -11,12 +11,19 @@ class Game {
 
 private:
 	//Variables
+	
+	//Game logic
+	int targetsMax;
+
+	int targetsHit;
+	int targetsMissed;
+
 	//Window
 	sf::RenderWindow* window;
 	sf::VideoMode videoMode;
 	sf::Event event;
 
-	Target target;
+	std::vector<Target> targets;
 
 	//Mouse positions
 	sf::Vector2i mousePosWindow;
@@ -36,6 +43,8 @@ public:
 
 	//Functions	
 	void pollEvents();
+
+	void spawnTargets();
 	void updateMousePosition();
 	void update();
 	

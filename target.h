@@ -21,8 +21,8 @@ public:
 	Target(const sf::RenderWindow& window);
 	virtual ~Target();
 
-	void update(sf::RenderTarget* target);
-	void render(sf::RenderTarget* target);
+	void update();
+	void render(sf::RenderTarget& target);
 
 };
 

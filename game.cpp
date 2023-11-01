@@ -6,6 +6,12 @@
 void Game::initVariables() {
 
 	this->window = nullptr;
+	
+	//Game logic
+	this->targetsMax = 10;
+
+	this->targetsHit = 0;
+	this->targetsMissed = 0;
 
 }
 
@@ -43,7 +49,7 @@ const bool Game::running() const {
 }
 
 
-//Functions
+//Public Functions
 void Game::pollEvents() {
 
 	//Event polling
@@ -64,7 +70,17 @@ void Game::pollEvents() {
 }
 
 
-//Update
+void Game::spawnTargets() {
+
+	if (this->targets.size() < this->targetsMax) {
+
+		this->targets.push_back(Target(*this->window));
+
+	}
+
+}
+
+
 void Game::updateMousePosition() {
 
 	this->mousePosWindow = sf::Mouse::getPosition(*this->window);	// mouse pos as integer
@@ -74,13 +90,15 @@ void Game::updateMousePosition() {
 }
 
 
+
+
 void Game::update() {
 
 	this->pollEvents();
 
-	this->updateMousePosition();
+	this->spawnTargets();
 
-	this->target.update(this->window);
+	this->updateMousePosition();
 
 }
 
@@ -90,8 +108,11 @@ void Game::render() {
 	this->window->clear();
 
 	//Render
-	this->target.render(this->window);
+	for (auto i : this->targets) {
 
+		i.render(*this->window);
+
+	}
 	this->window->display();
 
 }
