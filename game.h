@@ -44,8 +44,9 @@ public:
 	//Functions	
 	void pollEvents();
 
-	void spawnTargets();
 	void updateMousePosition();
+	void spawnTargets();
+	void updateTargets();
 	void update();
 	
 	void render();
