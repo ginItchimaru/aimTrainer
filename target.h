@@ -10,6 +10,7 @@
 class Target {
 
 private:
+
 	std::vector<sf::CircleShape> circleShapes;
 	sf::CircleShape circleShape;
 
@@ -20,6 +21,8 @@ private:
 public:
 	Target(const sf::RenderWindow& window);
 	virtual ~Target();
+
+	const sf::CircleShape getShape() const;
 
 	void update();
 	void render(sf::RenderTarget& target);

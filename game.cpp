@@ -8,7 +8,7 @@ void Game::initVariables() {
 	this->window = nullptr;
 
 	//Game logic
-	this->targetsMax = 10;
+	this->targetsMax = 5;
 
 	this->targetsHit = 0;
 	this->targetsMissed = 0;
@@ -74,7 +74,7 @@ void Game::updateMousePosition() {
 
 	this->mousePosWindow = sf::Mouse::getPosition(*this->window);	// mouse pos as integer
 	this->mousePosView = this->window->mapPixelToCoords(this->mousePosWindow);	// mouse pos as float
-	std::cout << "y: " << this->mousePosWindow.y << " x: " << mousePosWindow.x << "\n";
+	//std::cout << "y: " << this->mousePosWindow.y << " x: " << mousePosWindow.x << "\n";
 
 }
 
@@ -93,16 +93,23 @@ void Game::updateTargets() {
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 
-		bool deleted = false;
-		for (size_t i = 0; i < this->targets.size() and deleted == false; i++) {
 
-			if (this->targets[i].getRadius(this->mousePosView)) {
+
+		for (size_t i = 0; i < this->targets.size(); i++) {
+
+			if (this->targets[i].getShape().getGlobalBounds().contains(this->mousePosView)) {
 				
+				this->targets.erase(this->targets.begin() + i);
+				this->targetsHit++;
 
+			} else {
+
+				this->targetsMissed++;
 
 			}
 
 		}
+
 
 	}
 
@@ -120,6 +127,8 @@ void Game::update() {
 	this->spawnTargets();
 
 	this->updateMousePosition();
+
+	this->updateTargets();
 
 }
 
