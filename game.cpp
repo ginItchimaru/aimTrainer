@@ -8,7 +8,7 @@ void Game::initVariables() {
 	this->window = nullptr;
 
 	//Game logic
-	this->targetsMax = 5;
+	this->targetsMax = 1;
 
 	this->targetsHit = 0;
 	this->targetsMissed = 0;

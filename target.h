@@ -10,6 +10,7 @@
 class Target {
 
 private:
+	float borderLength;
 
 	std::vector<sf::CircleShape> circleShapes;
 	sf::CircleShape circleShape;
@@ -19,6 +20,7 @@ private:
 
 
 public:
+
 	Target(const sf::RenderWindow& window);
 	virtual ~Target();
 
