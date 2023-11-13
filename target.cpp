@@ -2,7 +2,8 @@
 
 void Target::initVariables() {
 
-	this->borderLength = 50;
+	this->borderLength = 200.f;
+	this->shapeSize = 10;
 
 }
 
@@ -18,7 +19,7 @@ void Target::initTargets(const sf::RenderWindow& window) {
 	float randX = static_cast<float>(rand() % static_cast<int>(maxX - minX + 1) + minX);  // second static_cast needs to be int so it can be converted to float
 	float randY = static_cast<float>(rand() % static_cast<int>(maxX - minX + 1) + minX);
 
-	this->circleShape.setRadius(10.f);
+	this->circleShape.setRadius(this->shapeSize);
 	sf::Color color(255, 0, 0);
 	this->circleShape.setFillColor(color);
 	this->circleShape.setPosition(sf::Vector2f(randX, randY));

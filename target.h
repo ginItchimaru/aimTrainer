@@ -11,6 +11,7 @@ class Target {
 
 private:
 	float borderLength;
+	int shapeSize;
 
 	std::vector<sf::CircleShape> circleShapes;
 	sf::CircleShape circleShape;
