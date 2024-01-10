@@ -1,7 +1,7 @@
-﻿  game.cpp
+﻿  target.cpp
   Generating code
-  3 of 171 functions ( 1.8%) were compiled, the rest were copied from previous compilation.
+  4 of 162 functions ( 2.5%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   aimTrainer.vcxproj -> C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\x64\Release\aimTrainer.exe

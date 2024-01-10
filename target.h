@@ -11,12 +11,14 @@ class Target {
 
 private:
 	float borderLength;
+	sf::Vector2f scale;
 	int shapeSize;
 
-	std::vector<sf::CircleShape> circleShapes;
-	sf::CircleShape circleShape;
+	sf::Sprite sprite;
+	sf::Texture texture;
 
 	void initVariables();
+	void initTexture();
 	void initTargets(const sf::RenderWindow& window);
 
 
@@ -25,7 +27,8 @@ public:
 	Target(const sf::RenderWindow& window);
 	virtual ~Target();
 
-	const sf::CircleShape getShape() const;
+	const sf::FloatRect getBounds() const;
+	const sf::Vector2f getPosition() const;
 
 	void update();
 	void render(sf::RenderTarget& target);

@@ -25,7 +25,6 @@ void Game::initWindow() {
 
 }
 
-
 //Constructors / Destructors
 Game::Game() {
 
@@ -40,7 +39,6 @@ Game::~Game() {
 
 }
 
-
 //Accessors
 const bool Game::running() const {
 
@@ -48,20 +46,19 @@ const bool Game::running() const {
 
 }
 
-
 //Public Functions
 void Game::pollEvents() {
 
 	//Event polling
-	while (this->window->pollEvent(this->event)) {
+	while (this->window->pollEvent(this->e)) {
 
-		switch (this->event.type) {
+		switch (this->e.type) {
 
 		case sf::Event::Closed:		// to close the game when user closes window
 			this->window->close();
 			break;
 		case sf::Event::KeyPressed:
-			if (this->event.key.code == sf::Keyboard::Escape)
+			if (this->e.key.code == sf::Keyboard::Escape)
 				this->window->close();
 			break;
 		}
@@ -69,6 +66,36 @@ void Game::pollEvents() {
 
 }
 
+bool Game::isTooClose(float x, float y) {	// not in use
+
+	const float minDistance = 50.f;
+
+	for (const auto& target : this->targets) {
+
+		float distance = std::sqrt(std::pow(x - target->getPosition().x, 2) +
+								   std::pow(y - target->getPosition().y, 2));
+
+		if (distance < minDistance) {
+
+			return true;
+
+		}
+
+	}
+
+	return false;
+
+}
+
+void Game::spawnTargets() {
+
+	if (this->targets.size() < this->targetsMax) {
+
+		this->targets.push_back(new Target(*this->window));
+
+	}
+
+}
 
 void Game::updateMousePosition() {
 
@@ -78,47 +105,29 @@ void Game::updateMousePosition() {
 
 }
 
-void Game::spawnTargets() {
-
-	if (this->targets.size() < this->targetsMax) {
-
-		this->targets.push_back(Target(*this->window));
-
-	}
-
-}
-
-
 void Game::updateTargets() {
-
+	
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
-
-
+		
 		for (size_t i = 0; i < this->targets.size(); i++) {
-
-			if (this->targets[i].getShape().getGlobalBounds().contains(this->mousePosView)) {
-				
+	
+			if (this->targets[i]->getBounds().contains(this->mousePosView)) {
+			
+				delete this->targets[i];
 				this->targets.erase(this->targets.begin() + i);
 				this->targetsHit++;
-
+			
 			} else {
-
+				
 				this->targetsMissed++;
-
+			
 			}
-
+		
 		}
-
-
+	
 	}
 
 }
-
-
-
-
-
 
 void Game::update() {
 
@@ -138,9 +147,9 @@ void Game::render() {
 	this->window->clear();
 
 	//Render
-	for (auto i : this->targets) {
+	for (auto *target : this->targets) {
 
-		i.render(*this->window);
+		target->render(*this->window);
 
 	}
 	this->window->display();
