@@ -3,7 +3,6 @@
 
 void Target::initVariables() {
 
-	this->borderLength = 200.f;
 	this->scale.x = 1.f;
 	this->scale.y = 1.f;
 
@@ -19,29 +18,20 @@ void Target::initTexture() {
 
 }
 
-void Target::initTargets(const sf::RenderWindow& window) {
-	
-	// randomize where the shapes spawn on the screen
-	// making sure it doesnt spawn to close to the windwo border
-	float minX = this->borderLength + this->sprite.getGlobalBounds().left;
-	float maxX = window.getSize().x - this->borderLength - this->sprite.getGlobalBounds().left;
-	float minY = this->borderLength + this->sprite.getGlobalBounds().top;
-	float maxY = window.getSize().y - this->borderLength - this->sprite.getGlobalBounds().top;
-	
-	float randX = static_cast<float>(rand() % static_cast<int>(maxX - minX + 1) + minX);  // second static_cast needs to be int so it can be converted to float
-	float randY = static_cast<float>(rand() % static_cast<int>(maxX - minX + 1) + minX);
+void Target::initTarget() {
 
 	this->sprite.setTexture(this->texture);
-	this->sprite.setPosition(randX, randY);
 	this->sprite.setScale(this->scale);
 
 }
 
-Target::Target(const sf::RenderWindow& window) {
+Target::Target(float x, float y) {
 	
 	this->initVariables();
 	this->initTexture();
-	this->initTargets(window);
+	this->initTarget();
+
+	this->sprite.setPosition(x, y);
 
 }
 

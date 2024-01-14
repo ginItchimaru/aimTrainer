@@ -1,1 +1,6 @@
-﻿
+﻿  game.cpp
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(78,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  main.cpp
+  target.cpp
+  Generating Code...
+  aimTrainer.vcxproj -> C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\x64\Debug\aimTrainer.exe

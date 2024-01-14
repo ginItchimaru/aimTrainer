@@ -10,7 +10,7 @@
 class Target {
 
 private:
-	float borderLength;
+	
 	sf::Vector2f scale;
 	int shapeSize;
 
@@ -19,14 +19,15 @@ private:
 
 	void initVariables();
 	void initTexture();
-	void initTargets(const sf::RenderWindow& window);
+	void initTarget();
 
 
 public:
 
-	Target(const sf::RenderWindow& window);
-	virtual ~Target();
+	Target(float x, float);
+	~Target();
 
+	//Accessors
 	const sf::FloatRect getBounds() const;
 	const sf::Vector2f getPosition() const;
 

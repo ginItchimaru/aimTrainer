@@ -7,6 +7,9 @@ void Game::initVariables() {
 
 	this->window = nullptr;
 
+	//Spawning targets
+	this->borderLength = 200.f;
+
 	//Game logic
 	this->targetsMax = 3;
 
@@ -87,11 +90,21 @@ bool Game::isTooClose(float x, float y) {	// not in use
 
 }
 
-void Game::spawnTargets() {
+void Game::spawnTargets(sf::RenderWindow& window) {
+
+	// randomize where the shapes spawn on the screen
+	// making sure it doesnt spawn to close to the windwo border
+	float minX = this->borderLength;
+	float maxX = window.getSize().x - this->borderLength;
+	float minY = this->borderLength;
+	float maxY = window.getSize().y - this->borderLength;
+
+	float randX = static_cast<float>(rand() % static_cast<int>(maxX - minX + 1) + minX);  // second static_cast needs to be int so it can be converted to float
+	float randY = static_cast<float>(rand() % static_cast<int>(maxX - minX + 1) + minX);
 
 	if (this->targets.size() < this->targetsMax) {
 
-		this->targets.push_back(new Target(*this->window));
+		this->targets.push_back(new Target(randX, randY));
 
 	}
 
@@ -107,9 +120,12 @@ void Game::updateMousePosition() {
 
 void Game::updateTargets() {
 	
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::T)) {
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+		std::cout << "Left mouse button pressed." << std::endl;
 		
-		for (size_t i = 0; i < this->targets.size(); i++) {
+		  
+		for (size_t i = 0; i < this->targets.size(); i++) { 
 	
 			if (this->targets[i]->getBounds().contains(this->mousePosView)) {
 			
@@ -133,7 +149,7 @@ void Game::update() {
 
 	this->pollEvents();
 
-	this->spawnTargets();
+	this->spawnTargets(*this->window);
 
 	this->updateMousePosition();
 

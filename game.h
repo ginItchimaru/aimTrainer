@@ -12,6 +12,9 @@ class Game {
 private:
 	//Variables
 
+	//Spawning Targets
+	float borderLength;
+
 	//Game logic
 	int targetsMax;
 
@@ -45,7 +48,7 @@ public:
 	void pollEvents();
 	
 	bool isTooClose(float x, float y);
-	void spawnTargets();
+	void spawnTargets(sf::RenderWindow& window);
 	
 	void updateMousePosition();
 	void updateTargets();
