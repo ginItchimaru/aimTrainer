@@ -49,6 +49,7 @@ public:
 	
 	bool isTooClose(float x, float y);
 	void spawnTargets(sf::RenderWindow& window);
+	bool isValidSpawn(float newX, float newY) const;
 	
 	void updateMousePosition();
 	void updateTargets();

@@ -8,7 +8,7 @@ void Game::initVariables() {
 	this->window = nullptr;
 
 	//Spawning targets
-	this->borderLength = 200.f;
+	this->borderLength = 250.f;
 
 	//Game logic
 	this->targetsMax = 3;
@@ -91,22 +91,42 @@ bool Game::isTooClose(float x, float y) {	// not in use
 }
 
 void Game::spawnTargets(sf::RenderWindow& window) {
-
-	// randomize where the shapes spawn on the screen
-	// making sure it doesnt spawn to close to the windwo border
 	float minX = this->borderLength;
 	float maxX = window.getSize().x - this->borderLength;
 	float minY = this->borderLength;
 	float maxY = window.getSize().y - this->borderLength;
 
-	float randX = static_cast<float>(rand() % static_cast<int>(maxX - minX + 1) + minX);  // second static_cast needs to be int so it can be converted to float
-	float randY = static_cast<float>(rand() % static_cast<int>(maxX - minX + 1) + minX);
+	float randX, randY;
 
 	if (this->targets.size() < this->targetsMax) {
+		
+		do {
+		
+			randX = static_cast<float>(rand() % static_cast<int>(maxX - minX + 1) + minX);
+			randY = static_cast<float>(rand() % static_cast<int>(maxY - minY + 1) + minY);
+		
+		} while (!isValidSpawn(randX, randY));
 
 		this->targets.push_back(new Target(randX, randY));
-
 	}
+}
+
+bool Game::isValidSpawn(float newX, float newY) const {
+	
+	// Check if the new coordinates are at least 50 units apart from the previous ones
+	for (const auto& target : this->targets) {
+		
+		float distance = std::sqrt(std::pow(newX - target->getBounds().left, 2) + std::pow(newY - target->getBounds().top, 2));
+		
+		if (distance < 50.0f) {
+			
+			return false;
+		
+		}
+	
+	}
+
+	return true;
 
 }
 
@@ -122,7 +142,6 @@ void Game::updateTargets() {
 	
 	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::T)) {
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-		std::cout << "Left mouse button pressed." << std::endl;
 		
 		  
 		for (size_t i = 0; i < this->targets.size(); i++) { 
