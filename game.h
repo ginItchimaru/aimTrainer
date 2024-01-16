@@ -11,6 +11,7 @@ class Game {
 
 private:
 	//Variables
+	bool fullscreen;
 
 	//Spawning Targets
 	float borderLength;

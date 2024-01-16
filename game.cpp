@@ -5,7 +5,9 @@
 //Private functions
 void Game::initVariables() {
 
+	// window
 	this->window = nullptr;
+	this->fullscreen = false;
 
 	//Spawning targets
 	this->borderLength = 250.f;
@@ -63,8 +65,23 @@ void Game::pollEvents() {
 		case sf::Event::KeyPressed:
 			if (this->e.key.code == sf::Keyboard::Escape)
 				this->window->close();
+			else if (this->e.key.code == sf::Keyboard::F)
+				this->fullscreen = !this->fullscreen;
 			break;
 		}
+	}
+
+	
+
+	if (this->fullscreen) {
+
+		this->window->create(sf::VideoMode::getDesktopMode(), "aim trainer", sf::Style::Fullscreen);
+
+	}
+	else {
+
+		this->window->create(sf::VideoMode(this->videoMode), "aim trainer");
+
 	}
 
 }
@@ -91,6 +108,8 @@ bool Game::isTooClose(float x, float y) {	// not in use
 }
 
 void Game::spawnTargets(sf::RenderWindow& window) {
+	
+	// add border
 	float minX = this->borderLength;
 	float maxX = window.getSize().x - this->borderLength;
 	float minY = this->borderLength;
@@ -99,21 +118,23 @@ void Game::spawnTargets(sf::RenderWindow& window) {
 	float randX, randY;
 
 	if (this->targets.size() < this->targetsMax) {
-		
+
 		do {
-		
+
 			randX = static_cast<float>(rand() % static_cast<int>(maxX - minX + 1) + minX);
 			randY = static_cast<float>(rand() % static_cast<int>(maxY - minY + 1) + minY);
-		
+
 		} while (!isValidSpawn(randX, randY));
 
 		this->targets.push_back(new Target(randX, randY));
+
 	}
+
 }
 
 bool Game::isValidSpawn(float newX, float newY) const {
 	
-	// Check if the new coordinates are at least 50 units apart from the previous ones
+	// Check if the new target is at least 50 units apart from the previous ones
 	for (const auto& target : this->targets) {
 		
 		float distance = std::sqrt(std::pow(newX - target->getBounds().left, 2) + std::pow(newY - target->getBounds().top, 2));
@@ -187,6 +208,7 @@ void Game::render() {
 		target->render(*this->window);
 
 	}
+	
 	this->window->display();
 
 }
