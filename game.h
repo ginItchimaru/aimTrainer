@@ -5,6 +5,7 @@
 #include <ctime>
 
 #include "target.h"
+#include "animation.h"
 
 
 class Game {
