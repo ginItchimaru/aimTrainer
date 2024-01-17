@@ -18,6 +18,7 @@ int main() {
 
 		//Render
 		game.render();
+	
 	}
 
 

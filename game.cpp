@@ -25,7 +25,7 @@ void Game::initWindow() {
 	this->videoMode.height = 800;
 	this->videoMode.width = 800;
 
-	this->window = new sf::RenderWindow(this->videoMode, "aim trainer", sf::Style::Titlebar | sf::Style::Close);
+	this->window = new sf::RenderWindow(this->videoMode, "aim trainer", sf::Style::Close);
 	this->window->setFramerateLimit(144);
 
 }
@@ -65,25 +65,29 @@ void Game::pollEvents() {
 		case sf::Event::KeyPressed:
 			if (this->e.key.code == sf::Keyboard::Escape)
 				this->window->close();
-			else if (this->e.key.code == sf::Keyboard::F)
+			// fullscreen option
+			else if (this->e.key.code == sf::Keyboard::F) {
+				
 				this->fullscreen = !this->fullscreen;
+				
+				if (this->fullscreen) {
+					
+					this->window->create(sf::VideoMode::getDesktopMode(), "aim trainer", sf::Style::Fullscreen);
+				
+				}
+				else {
+				
+					this->window->create(sf::VideoMode(this->videoMode), "aim trainer", sf::Style::Close);
+				
+				}
+			
+			}
 			break;
+		
 		}
-	}
-
 	
-
-	if (this->fullscreen) {
-
-		this->window->create(sf::VideoMode::getDesktopMode(), "aim trainer", sf::Style::Fullscreen);
-
 	}
-	else {
-
-		this->window->create(sf::VideoMode(this->videoMode), "aim trainer");
-
-	}
-
+	
 }
 
 bool Game::isTooClose(float x, float y) {	// not in use
