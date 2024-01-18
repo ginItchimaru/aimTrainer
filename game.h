@@ -17,18 +17,21 @@ private:
 	//Spawning Targets
 	float borderLength;
 
-	//Game logic
+	//Game logic / Targets
 	int targetsMax;
-
 	int targetsHit;
 	int targetsMissed;
+	
+	std::vector<Target*> targets;
+
+	//Animation Effect
+	std::vector<Animation*> animations;
 
 	//Window
 	sf::RenderWindow* window;
 	sf::VideoMode videoMode;
 	sf::Event e;
 
-	std::vector<Target*> targets;
 
 	//Mouse positions
 	sf::Vector2i mousePosWindow;
@@ -49,12 +52,11 @@ public:
 	//Functions	
 	void pollEvents();
 	
-	bool isTooClose(float x, float y);
 	void spawnTargets(sf::RenderWindow& window);
 	bool isValidSpawn(float newX, float newY) const;
 	
 	void updateMousePosition();
-	void updateTargets();
+	void updateTargetsAndAnimation();
 	void update();
 	
 	void render();

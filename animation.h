@@ -19,7 +19,7 @@ private:
 
 public:
 
-	Animation();
+	Animation(float x, float y);
 	~Animation();
 
 	void updateAnimations();

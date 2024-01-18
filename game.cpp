@@ -90,27 +90,6 @@ void Game::pollEvents() {
 	
 }
 
-bool Game::isTooClose(float x, float y) {	// not in use
-
-	const float minDistance = 50.f;
-
-	for (const auto& target : this->targets) {
-
-		float distance = std::sqrt(std::pow(x - target->getPosition().x, 2) +
-								   std::pow(y - target->getPosition().y, 2));
-
-		if (distance < minDistance) {
-
-			return true;
-
-		}
-
-	}
-
-	return false;
-
-}
-
 void Game::spawnTargets(sf::RenderWindow& window) {
 	
 	// add border
@@ -163,7 +142,7 @@ void Game::updateMousePosition() {
 
 }
 
-void Game::updateTargets() {
+void Game::updateTargetsAndAnimation() {
 	
 	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::T)) {
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
@@ -197,7 +176,7 @@ void Game::update() {
 
 	this->updateMousePosition();
 
-	this->updateTargets();
+	this->updateTargetsAndAnimation();
 
 }
 

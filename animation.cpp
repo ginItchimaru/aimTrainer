@@ -33,7 +33,7 @@ void Animation::initAnimations() {
 
 }
 
-Animation::Animation() {
+Animation::Animation(float x, float y) {
 
 	//this->initVariables();
 	this->initTexture();
