@@ -23,7 +23,7 @@ void Animation::initSprite() {
 	this->currentFrame = sf::IntRect(0, 0, 0, 64);
 
 	this->sprite.setTextureRect(this->currentFrame);
-	//this->sprite.setScale(,);
+	this->sprite.setScale(1, 1);
 
 }
 
@@ -39,6 +39,8 @@ Animation::Animation(float x, float y) {
 	this->initTexture();
 	this->initSprite();
 	this->initAnimations();
+
+	this->sprite.setPosition(x, y);
 
 }
 

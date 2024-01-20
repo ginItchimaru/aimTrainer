@@ -14,6 +14,10 @@ private:
 	//Variables
 	bool fullscreen;
 
+	//World
+	sf::Texture backgroundTexture;
+	sf::Sprite  background;
+
 	//Spawning Targets
 	float borderLength;
 
@@ -39,6 +43,7 @@ private:
 
 	//Private functions
 	void initVariables();
+	void initWorld();
 	void initWindow();
 
 public:
@@ -59,5 +64,6 @@ public:
 	void updateTargetsAndAnimation();
 	void update();
 	
+	void renderWorld();
 	void render();
 };

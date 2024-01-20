@@ -20,6 +20,15 @@ void Game::initVariables() {
 
 }
 
+void Game::initWorld() {
+
+	if (!this->backgroundTexture.loadFromFile("textures/spaceBackground4.png"))
+		std::cout << "ERROR::GAME::Failed to load background texture" << "\n";
+
+	this->background.setTexture(this->backgroundTexture);
+
+}
+
 void Game::initWindow() {
 
 	this->videoMode.height = 800;
@@ -34,6 +43,7 @@ void Game::initWindow() {
 Game::Game() {
 
 	this->initVariables();
+	this->initWorld();
 	this->initWindow();
 
 }
@@ -147,14 +157,18 @@ void Game::updateTargetsAndAnimation() {
 	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::T)) {
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 		
-		  
 		for (size_t i = 0; i < this->targets.size(); i++) { 
 	
 			if (this->targets[i]->getBounds().contains(this->mousePosView)) {
-			
+				
+				float x = this->targets[i]->getPosition().x;
+				float y = this->targets[i]->getPosition().y;
+
 				delete this->targets[i];
 				this->targets.erase(this->targets.begin() + i);
 				this->targetsHit++;
+				
+				this->animations.push_back(new Animation(x, y));
 			
 			} else {
 				
@@ -164,6 +178,12 @@ void Game::updateTargetsAndAnimation() {
 		
 		}
 	
+	}
+
+	for (auto* animation : this->animations) {
+
+		animation->update();
+
 	}
 
 }
@@ -178,17 +198,37 @@ void Game::update() {
 
 	this->updateTargetsAndAnimation();
 
+	for (auto* animation : this->animations) {
+
+		animation->update();
+
+	}
+
 }
 
+void Game::renderWorld() {
+
+	this->window->draw(this->background);
+
+}
 
 void Game::render() {
 
 	this->window->clear();
 
+	//Draw world
+	this->renderWorld();
+
 	//Render
 	for (auto *target : this->targets) {
 
 		target->render(*this->window);
+
+	}
+
+	for (auto *animation : this->animations) {
+
+		animation->render(*this->window);
 
 	}
 	
