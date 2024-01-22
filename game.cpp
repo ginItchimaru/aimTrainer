@@ -11,6 +11,7 @@ void Game::initVariables() {
 
 	//Spawning targets
 	this->borderLength = 250.f;
+	this->borderLengthFullscreen = this->borderLength * 3;
 
 	//Game logic
 	this->targetsMax = 3;
@@ -22,10 +23,16 @@ void Game::initVariables() {
 
 void Game::initWorld() {
 
-	if (!this->backgroundTexture.loadFromFile("textures/spaceBackground4.png"))
-		std::cout << "ERROR::GAME::Failed to load background texture" << "\n";
+	if (!this->backgroundTextureSmall.loadFromFile("textures/spaceBackgroundSmall.png"))
+		std::cout << "ERROR::GAME::Failed to load small background texture" << "\n";
 
-	this->background.setTexture(this->backgroundTexture);
+	if (!this->backgroundTextureBig.loadFromFile("textures/spaceBackgroundBig.png"))
+		std::cout << "ERROR::GAME::Failed to load big background texture" << "\n";
+
+	//this->frameBackground = sf::IntRect(0, 0, 800, 800);
+	//this->background.setTextureRect(this->frameBackground);
+	
+	this->background.setTexture(this->backgroundTextureSmall);
 
 }
 
@@ -82,12 +89,14 @@ void Game::pollEvents() {
 				
 				if (this->fullscreen) {
 					
-					this->window->create(sf::VideoMode::getDesktopMode(), "aim trainer", sf::Style::Fullscreen);
-				
+					this->window->create(sf::VideoMode(this->videoMode), "aim trainer", sf::Style::Fullscreen);
+					this->background.setTexture(this->backgroundTextureBig);
+
 				}
 				else {
 				
 					this->window->create(sf::VideoMode(this->videoMode), "aim trainer", sf::Style::Close);
+					this->background.setTexture(this->backgroundTextureSmall);
 				
 				}
 			
@@ -103,10 +112,24 @@ void Game::pollEvents() {
 void Game::spawnTargets(sf::RenderWindow& window) {
 	
 	// add border
-	float minX = this->borderLength;
-	float maxX = window.getSize().x - this->borderLength;
-	float minY = this->borderLength;
-	float maxY = window.getSize().y - this->borderLength;
+	float minX, maxX, minY, maxY;
+
+	if (!this->fullscreen) {
+		
+		minX = this->borderLength;
+		maxX = window.getSize().x - this->borderLength;
+		minY = this->borderLength;
+		maxY = window.getSize().y - this->borderLength;
+	
+	}
+	else if (this->fullscreen) {
+		
+		minX = this->borderLength;
+		maxX = window.getSize().x - this->borderLengthFullscreen;
+		minY = this->borderLength;
+		maxY = window.getSize().y - this->borderLengthFullscreen;
+	
+	}
 
 	float randX, randY;
 

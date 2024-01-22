@@ -15,11 +15,14 @@ private:
 	bool fullscreen;
 
 	//World
-	sf::Texture backgroundTexture;
+	sf::Texture backgroundTextureSmall;
+	sf::Texture backgroundTextureBig;
 	sf::Sprite  background;
+	//sf::IntRect frameBackground;
 
 	//Spawning Targets
 	float borderLength;
+	float borderLengthFullscreen;
 
 	//Game logic / Targets
 	int targetsMax;

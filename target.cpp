@@ -10,7 +10,7 @@ void Target::initVariables() {
 
 void Target::initTexture() {
 
-	if (!this->texture.loadFromFile("textures/Lava.png")) {
+	if (!this->texture.loadFromFile("textures/Ice.png")) {
 
 		std::cout << "ERROR::PLAYER::COULD NOT LOAD THE PLAYER SHEET!" << "\n";
 
