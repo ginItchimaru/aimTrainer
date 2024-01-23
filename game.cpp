@@ -21,21 +21,6 @@ void Game::initVariables() {
 
 }
 
-void Game::initWorld() {
-
-	if (!this->backgroundTextureSmall.loadFromFile("textures/spaceBackgroundSmall.png"))
-		std::cout << "ERROR::GAME::Failed to load small background texture" << "\n";
-
-	if (!this->backgroundTextureBig.loadFromFile("textures/spaceBackgroundBig.png"))
-		std::cout << "ERROR::GAME::Failed to load big background texture" << "\n";
-
-	//this->frameBackground = sf::IntRect(0, 0, 800, 800);
-	//this->background.setTextureRect(this->frameBackground);
-	
-	this->background.setTexture(this->backgroundTextureSmall);
-
-}
-
 void Game::initWindow() {
 
 	this->videoMode.height = 800;
@@ -46,12 +31,26 @@ void Game::initWindow() {
 
 }
 
+void Game::initWorld() {
+
+	if (!this->backgroundTextureSmall.loadFromFile("textures/spaceBackgroundSmall.png"))
+		std::cout << "ERROR::GAME::Failed to load small background texture" << "\n";
+
+	if (!this->backgroundTextureBig.loadFromFile("textures/spaceBackgroundBig.png"))
+		std::cout << "ERROR::GAME::Failed to load big background texture" << "\n";
+
+	this->background.setTexture(this->backgroundTextureBig);
+	this->frameBackground = sf::IntRect(560, 140, 800, 800);
+	this->background.setTextureRect(this->frameBackground);
+
+}
+
 //Constructors / Destructors
 Game::Game() {
 
 	this->initVariables();
-	this->initWorld();
 	this->initWindow();
+	this->initWorld();
 
 }
 
@@ -71,6 +70,8 @@ const bool Game::running() const {
 //Public Functions
 void Game::pollEvents() {
 
+	static bool switchTexture = false;
+
 	//Event polling
 	while (this->window->pollEvent(this->e)) {
 
@@ -89,15 +90,25 @@ void Game::pollEvents() {
 				
 				if (this->fullscreen) {
 					
-					this->window->create(sf::VideoMode(this->videoMode), "aim trainer", sf::Style::Fullscreen);
-					this->background.setTexture(this->backgroundTextureBig);
+					this->window->create(sf::VideoMode(1920, 1080), "aim trainer", sf::Style::Fullscreen);
+					
+					this->frameBackground.left = 0.f;
+					this->frameBackground.top = 0.f;
+					this->frameBackground.width = 1920.f;
+					this->frameBackground.height = 1080.f;
+					this->background.setTextureRect(this->frameBackground);
 
 				}
 				else {
 				
 					this->window->create(sf::VideoMode(this->videoMode), "aim trainer", sf::Style::Close);
-					this->background.setTexture(this->backgroundTextureSmall);
-				
+					
+					this->frameBackground.left = 560.f;
+					this->frameBackground.top = 140.f;
+					this->frameBackground.width = 800.f;
+					this->frameBackground.height = 800.f;
+					this->background.setTextureRect(this->frameBackground);
+
 				}
 			
 			}
@@ -106,7 +117,7 @@ void Game::pollEvents() {
 		}
 	
 	}
-	
+
 }
 
 void Game::spawnTargets(sf::RenderWindow& window) {

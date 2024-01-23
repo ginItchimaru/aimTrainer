@@ -13,12 +13,14 @@ class Game {
 private:
 	//Variables
 	bool fullscreen;
+	
+	sf::Clock delay; // not in use
 
 	//World
 	sf::Texture backgroundTextureSmall;
 	sf::Texture backgroundTextureBig;
 	sf::Sprite  background;
-	//sf::IntRect frameBackground;
+	sf::IntRect frameBackground;
 
 	//Spawning Targets
 	float borderLength;
