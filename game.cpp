@@ -10,8 +10,10 @@ void Game::initVariables() {
 	this->fullscreen = false;
 
 	//Spawning targets
-	this->borderLength = 250.f;
-	this->borderLengthFullscreen = this->borderLength * 3;
+	this->borderLengthY = 200.f;
+	this->borderLengthX = 250.f;
+	this->borderLengthFullscreenY = 200.f;
+	this->borderLengthFullscreenX = 500.f;
 
 	//Game logic
 	this->targetsMax = 3;
@@ -32,9 +34,6 @@ void Game::initWindow() {
 }
 
 void Game::initWorld() {
-
-	if (!this->backgroundTextureSmall.loadFromFile("textures/spaceBackgroundSmall.png"))
-		std::cout << "ERROR::GAME::Failed to load small background texture" << "\n";
 
 	if (!this->backgroundTextureBig.loadFromFile("textures/spaceBackgroundBig.png"))
 		std::cout << "ERROR::GAME::Failed to load big background texture" << "\n";
@@ -70,7 +69,7 @@ const bool Game::running() const {
 //Public Functions
 void Game::pollEvents() {
 
-	static bool switchTexture = false;
+	this->changedScreen = false;
 
 	//Event polling
 	while (this->window->pollEvent(this->e)) {
@@ -87,11 +86,14 @@ void Game::pollEvents() {
 			else if (this->e.key.code == sf::Keyboard::F) {
 				
 				this->fullscreen = !this->fullscreen;
+				this->changedScreen = true;
 				
 				if (this->fullscreen) {
 					
-					this->window->create(sf::VideoMode(1920, 1080), "aim trainer", sf::Style::Fullscreen);
+					// window
+					this->window->create(sf::VideoMode::getDesktopMode(), "aim trainer", sf::Style::Fullscreen);
 					
+					// background
 					this->frameBackground.left = 0.f;
 					this->frameBackground.top = 0.f;
 					this->frameBackground.width = 1920.f;
@@ -100,9 +102,11 @@ void Game::pollEvents() {
 
 				}
 				else {
-				
+
+					// window
 					this->window->create(sf::VideoMode(this->videoMode), "aim trainer", sf::Style::Close);
 					
+					// background
 					this->frameBackground.left = 560.f;
 					this->frameBackground.top = 140.f;
 					this->frameBackground.width = 800.f;
@@ -127,18 +131,18 @@ void Game::spawnTargets(sf::RenderWindow& window) {
 
 	if (!this->fullscreen) {
 		
-		minX = this->borderLength;
-		maxX = window.getSize().x - this->borderLength;
-		minY = this->borderLength;
-		maxY = window.getSize().y - this->borderLength;
+		minX = this->borderLengthX;
+		maxX = window.getSize().x - this->borderLengthX;
+		minY = this->borderLengthY;
+		maxY = window.getSize().y - this->borderLengthY;
 	
 	}
 	else if (this->fullscreen) {
 		
-		minX = this->borderLength;
-		maxX = window.getSize().x - this->borderLengthFullscreen;
-		minY = this->borderLength;
-		maxY = window.getSize().y - this->borderLengthFullscreen;
+		minX = this->borderLengthFullscreenX;
+		maxX = window.getSize().x - this->borderLengthFullscreenX;
+		minY = this->borderLengthFullscreenY;
+		maxY = window.getSize().y - this->borderLengthFullscreenY;
 	
 	}
 
@@ -202,7 +206,7 @@ void Game::updateTargetsAndAnimation() {
 				this->targets.erase(this->targets.begin() + i);
 				this->targetsHit++;
 				
-				this->animations.push_back(new Animation(x, y));
+				//this->animations.push_back(new Animation(x, y));
 			
 			} else {
 				
@@ -214,6 +218,19 @@ void Game::updateTargetsAndAnimation() {
 	
 	}
 
+	if (this->changedScreen) {
+
+		this->changedScreen = false;
+
+		for (size_t i = 0; i < this->targets.size(); i++) {
+			
+			delete this->targets[i];
+			this->targets.erase(this->targets.begin() + i);
+			
+		}
+
+	}
+
 	for (auto* animation : this->animations) {
 
 		animation->update();
@@ -223,7 +240,7 @@ void Game::updateTargetsAndAnimation() {
 }
 
 void Game::update() {
-
+	
 	this->pollEvents();
 
 	this->spawnTargets(*this->window);
@@ -231,12 +248,6 @@ void Game::update() {
 	this->updateMousePosition();
 
 	this->updateTargetsAndAnimation();
-
-	for (auto* animation : this->animations) {
-
-		animation->update();
-
-	}
 
 }
 

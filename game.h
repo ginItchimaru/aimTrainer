@@ -13,18 +13,20 @@ class Game {
 private:
 	//Variables
 	bool fullscreen;
+	bool changedScreen;
 	
 	sf::Clock delay; // not in use
 
 	//World
-	sf::Texture backgroundTextureSmall;
 	sf::Texture backgroundTextureBig;
 	sf::Sprite  background;
 	sf::IntRect frameBackground;
 
 	//Spawning Targets
-	float borderLength;
-	float borderLengthFullscreen;
+	float borderLengthY;
+	float borderLengthX;
+	float borderLengthFullscreenY;
+	float borderLengthFullscreenX;
 
 	//Game logic / Targets
 	int targetsMax;
