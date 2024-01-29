@@ -127,25 +127,28 @@ void Game::pollEvents() {
 void Game::spawnTargets(sf::RenderWindow& window) {
 	
 	// add border
-	float minX, maxX, minY, maxY;
+	float minX = 0.f;
+	float maxX = 0.f;
+	float minY = 0.f;
+	float maxY = 0.f;
 
 	if (!this->fullscreen) {
-		
+
 		minX = this->borderLengthX;
 		maxX = window.getSize().x - this->borderLengthX;
 		minY = this->borderLengthY;
 		maxY = window.getSize().y - this->borderLengthY;
-	
+
 	}
-	else if (this->fullscreen) {
-		
+	else {
+
 		minX = this->borderLengthFullscreenX;
 		maxX = window.getSize().x - this->borderLengthFullscreenX;
 		minY = this->borderLengthFullscreenY;
 		maxY = window.getSize().y - this->borderLengthFullscreenY;
-	
-	}
 
+	}
+	
 	float randX, randY;
 
 	if (this->targets.size() < this->targetsMax) {
@@ -154,6 +157,8 @@ void Game::spawnTargets(sf::RenderWindow& window) {
 
 			randX = static_cast<float>(rand() % static_cast<int>(maxX - minX + 1) + minX);
 			randY = static_cast<float>(rand() % static_cast<int>(maxY - minY + 1) + minY);
+
+			std::cout << "x: " << randX << " y: " << randY << "\n";
 
 		} while (!isValidSpawn(randX, randY));
 
@@ -170,7 +175,7 @@ bool Game::isValidSpawn(float newX, float newY) const {
 		
 		float distance = std::sqrt(std::pow(newX - target->getBounds().left, 2) + std::pow(newY - target->getBounds().top, 2));
 		
-		if (distance < 50.0f) {
+		if (distance < 50.f) {
 			
 			return false;
 		
@@ -219,16 +224,35 @@ void Game::updateTargetsAndAnimation() {
 	}
 
 	if (this->changedScreen) {
-
+		
 		this->changedScreen = false;
 
-		for (size_t i = 0; i < this->targets.size(); i++) {
+		for (size_t i = 0; i < this->targets.size(); /* no increment here */) {
 			
-			delete this->targets[i];
-			this->targets.erase(this->targets.begin() + i);
+			if (!this->fullscreen) {
+				// Check if the target is outside the valid spawn range
+				if (this->targets[i]->getPosition().x > this->window->getSize().x - this->borderLengthX ||
+					this->targets[i]->getPosition().y > this->window->getSize().y - this->borderLengthY) {
+					
+					delete this->targets[i];
+					this->targets.erase(this->targets.begin() + i);
+				
+				}
+				else {
+					// Only increment when not erasing a target
+					++i;
+				}
 			
+			}
+			else {
+				// Handle deletion for fullscreen (windowed targets are already deleted)
+				delete this->targets[i];
+				this->targets.erase(this->targets.begin() + i);
+			
+			}
+		
 		}
-
+	
 	}
 
 	for (auto* animation : this->animations) {
