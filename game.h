@@ -23,10 +23,11 @@ private:
 	sf::IntRect frameBackground;
 
 	//Spawning Targets
-	float borderLengthY;
-	float borderLengthX;
-	float borderLengthFullscreenY;
-	float borderLengthFullscreenX;
+	float spawnBorderY;
+	float spawnBorderX;
+	float spawnBorderFullscreenY;
+	float spawnBorderFullscreenX;
+	float targetGap;
 
 	//Game logic / Targets
 	int targetsMax;

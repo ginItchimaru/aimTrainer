@@ -10,14 +10,15 @@ void Game::initVariables() {
 	this->fullscreen = false;
 
 	//Spawning targets
-	this->borderLengthY = 200.f;
-	this->borderLengthX = 250.f;
-	this->borderLengthFullscreenY = 200.f;
-	this->borderLengthFullscreenX = 500.f;
+	this->spawnBorderY = 200.f;
+	this->spawnBorderX = 250.f;
+	this->spawnBorderFullscreenY = 200.f;
+	this->spawnBorderFullscreenX = 500.f;
+
+	this->targetGap = 50.f;
 
 	//Game logic
 	this->targetsMax = 3;
-
 	this->targetsHit = 0;
 	this->targetsMissed = 0;
 
@@ -134,18 +135,18 @@ void Game::spawnTargets(sf::RenderWindow& window) {
 
 	if (!this->fullscreen) {
 
-		minX = this->borderLengthX;
-		maxX = window.getSize().x - this->borderLengthX;
-		minY = this->borderLengthY;
-		maxY = window.getSize().y - this->borderLengthY;
+		minX = this->spawnBorderX;
+		maxX = window.getSize().x - this->spawnBorderX;
+		minY = this->spawnBorderY;
+		maxY = window.getSize().y - this->spawnBorderY;
 
 	}
 	else {
 
-		minX = this->borderLengthFullscreenX;
-		maxX = window.getSize().x - this->borderLengthFullscreenX;
-		minY = this->borderLengthFullscreenY;
-		maxY = window.getSize().y - this->borderLengthFullscreenY;
+		minX = this->spawnBorderFullscreenX;
+		maxX = window.getSize().x - this->spawnBorderFullscreenX;
+		minY = this->spawnBorderFullscreenY;
+		maxY = window.getSize().y - this->spawnBorderFullscreenY;
 
 	}
 	
@@ -157,8 +158,6 @@ void Game::spawnTargets(sf::RenderWindow& window) {
 
 			randX = static_cast<float>(rand() % static_cast<int>(maxX - minX + 1) + minX);
 			randY = static_cast<float>(rand() % static_cast<int>(maxY - minY + 1) + minY);
-
-			std::cout << "x: " << randX << " y: " << randY << "\n";
 
 		} while (!isValidSpawn(randX, randY));
 
@@ -175,7 +174,7 @@ bool Game::isValidSpawn(float newX, float newY) const {
 		
 		float distance = std::sqrt(std::pow(newX - target->getBounds().left, 2) + std::pow(newY - target->getBounds().top, 2));
 		
-		if (distance < 50.f) {
+		if (distance < this->targetGap) {
 			
 			return false;
 		
@@ -231,8 +230,8 @@ void Game::updateTargetsAndAnimation() {
 			
 			if (!this->fullscreen) {
 				// Check if the target is outside the valid spawn range
-				if (this->targets[i]->getPosition().x > this->window->getSize().x - this->borderLengthX ||
-					this->targets[i]->getPosition().y > this->window->getSize().y - this->borderLengthY) {
+				if (this->targets[i]->getPosition().x > this->window->getSize().x - this->spawnBorderX ||
+					this->targets[i]->getPosition().y > this->window->getSize().y - this->spawnBorderY) {
 					
 					delete this->targets[i];
 					this->targets.erase(this->targets.begin() + i);
