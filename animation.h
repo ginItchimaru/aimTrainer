@@ -6,6 +6,7 @@
 class Animation {
 
 private:
+	bool animationFinished;
 
 	sf::Sprite sprite;
 	sf::Texture texture;
@@ -21,6 +22,8 @@ public:
 
 	Animation(float x, float y);
 	~Animation();
+
+	const bool animationOver() const;
 
 	void updateAnimations();
 	void update();

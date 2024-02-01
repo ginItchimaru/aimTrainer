@@ -20,10 +20,10 @@ void Animation::initTexture() {
 void Animation::initSprite() {
 
 	this->sprite.setTexture(this->texture);
-	this->currentFrame = sf::IntRect(0, 0, 0, 64);
+	this->currentFrame = sf::IntRect(0, 256, 64, 64);
 
 	this->sprite.setTextureRect(this->currentFrame);
-	this->sprite.setScale(1, 1);
+	//this->sprite.setScale(1, 1);
 
 }
 
@@ -50,14 +50,26 @@ Animation::~Animation() {
 
 }
 
+const bool Animation::animationOver() const {
+	
+	return this->animationFinished;
+	
+}
+
 void Animation::updateAnimations() {
+	
+	this->animationFinished = false;
 
 	if (this->animationTimer.getElapsedTime().asSeconds() >= 0.1f) {
 
-		this->currentFrame.top = 64.f;
 		this->currentFrame.left += 64.f;
-		if (this->currentFrame.left >= 448.f)
+		if (this->currentFrame.left >= 576.f) {
+			
 			this->currentFrame.left = 0.f;
+			this->animationFinished = true;
+
+		}
+			
 
 		this->animationTimer.restart();
 		this->sprite.setTextureRect(this->currentFrame);

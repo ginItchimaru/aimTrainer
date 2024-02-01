@@ -15,7 +15,7 @@ void Game::initVariables() {
 	this->spawnBorderFullscreenY = 200.f;
 	this->spawnBorderFullscreenX = 500.f;
 
-	this->targetGap = 50.f;
+	this->targetGap = 100.f;
 
 	//Game logic
 	this->targetsMax = 3;
@@ -210,7 +210,7 @@ void Game::updateTargetsAndAnimation() {
 				this->targets.erase(this->targets.begin() + i);
 				this->targetsHit++;
 				
-				//this->animations.push_back(new Animation(x, y));
+				this->animations.push_back(new Animation(x, y));
 			
 			} else {
 				
@@ -258,6 +258,18 @@ void Game::updateTargetsAndAnimation() {
 
 		animation->update();
 
+	}
+	
+	for (size_t i = 0; i < this->animations.size(); ++i) {
+		
+		if (this->animations[i]->animationOver()) {
+		
+			delete this->animations[i];
+			this->animations.erase(this->animations.begin() + i);
+			
+			--i;
+		}
+		
 	}
 
 }
