@@ -24,6 +24,7 @@ void Game::initVariables() {
 
 }
 
+
 void Game::initWindow() {
 
 	this->videoMode.height = 800;
@@ -36,12 +37,34 @@ void Game::initWindow() {
 
 void Game::initWorld() {
 
-	if (!this->backgroundTextureBig.loadFromFile("textures/spaceBackgroundBig.png"))
-		std::cout << "ERROR::GAME::Failed to load big background texture" << "\n";
+	if (!this->backgroundTexture.loadFromFile("textures/spaceBackgroundBig.png"))
+		std::cout << "ERROR::GAME::Failed to background texture" << "\n";
 
-	this->background.setTexture(this->backgroundTextureBig);
+	this->background.setTexture(this->backgroundTexture);
 	this->frameBackground = sf::IntRect(560, 140, 800, 800);
 	this->background.setTextureRect(this->frameBackground);
+
+}
+
+void Game::initCursor() {
+
+	if (!this->cursorTexture.loadFromFile("textures/Lava.png"))	// needs texture
+		std::cout << "ERROR::GAME::Failed to load cursor texture" << "\n";
+
+	// convert texture to pixels according to chatgpt
+	sf::Image image = this->cursorTexture.copyToImage();
+	const sf::Uint8* pixels = image.getPixelsPtr();
+
+	// hide system cursor
+	this->window->setMouseCursorVisible(false);
+
+	if (cursor.loadFromPixels(pixels, this->cursorTexture.getSize(), { 0, 0 })) {
+		// Set the cursor
+		this->window->setMouseCursor(cursor);
+	}
+	else {	
+		std::cout << "ERROR::GAME::Failed to create cursor" << "\n";
+	}
 
 }
 
@@ -51,6 +74,7 @@ Game::Game() {
 	this->initVariables();
 	this->initWindow();
 	this->initWorld();
+	this->initCursor();
 
 }
 
@@ -300,15 +324,15 @@ void Game::render() {
 	this->renderWorld();
 
 	//Render
-	for (auto *target : this->targets) {
-
-		target->render(*this->window);
-
-	}
-
 	for (auto *animation : this->animations) {
 
 		animation->render(*this->window);
+
+	}
+
+	for (auto *target : this->targets) {
+
+		target->render(*this->window);
 
 	}
 	

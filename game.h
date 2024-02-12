@@ -18,9 +18,13 @@ private:
 	sf::Clock delay; // not in use
 
 	//World
-	sf::Texture backgroundTextureBig;
+	sf::Texture backgroundTexture;
 	sf::Sprite  background;
 	sf::IntRect frameBackground;
+
+	//Cursor
+	sf::Texture cursorTexture;
+	sf::Cursor cursor;
 
 	//Spawning Targets
 	float spawnBorderY;
@@ -53,6 +57,7 @@ private:
 	void initVariables();
 	void initWorld();
 	void initWindow();
+	void initCursor();
 
 public:
 	//Constructors / Destructors
