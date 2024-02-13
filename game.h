@@ -33,10 +33,12 @@ private:
 	float spawnBorderFullscreenX;
 	float targetGap;
 
-	//Game logic / Targets
+	//Game logic
 	int targetsMax;
 	int targetsHit;
 	int targetsMissed;
+
+	bool mouseHeld;
 	
 	std::vector<Target*> targets;
 

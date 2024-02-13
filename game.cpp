@@ -22,6 +22,8 @@ void Game::initVariables() {
 	this->targetsHit = 0;
 	this->targetsMissed = 0;
 
+	this->mouseHeld = false;
+
 }
 
 
@@ -74,7 +76,7 @@ Game::Game() {
 	this->initVariables();
 	this->initWindow();
 	this->initWorld();
-	this->initCursor();
+	//this->initCursor();
 
 }
 
@@ -127,7 +129,7 @@ void Game::pollEvents() {
 
 				}
 				else {
-
+					
 					// window
 					this->window->create(sf::VideoMode(this->videoMode), "aim trainer", sf::Style::Close);
 					
@@ -223,26 +225,36 @@ void Game::updateTargetsAndAnimation() {
 	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::T)) {
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 		
-		for (size_t i = 0; i < this->targets.size(); i++) { 
-	
-			if (this->targets[i]->getBounds().contains(this->mousePosView)) {
-				
-				float x = this->targets[i]->getPosition().x;
-				float y = this->targets[i]->getPosition().y;
+		if (!this->mouseHeld) {
 
-				delete this->targets[i];
-				this->targets.erase(this->targets.begin() + i);
-				this->targetsHit++;
+			this->mouseHeld = true;
+
+			for (size_t i = 0; i < this->targets.size(); i++) {
+
+				if (this->targets[i]->getBounds().contains(this->mousePosView)) {
+
+					float x = this->targets[i]->getPosition().x;
+					float y = this->targets[i]->getPosition().y;
+
+					delete this->targets[i];
+					this->targets.erase(this->targets.begin() + i);
+					this->targetsHit++;
+
+					this->animations.push_back(new Animation(x, y));
+
+				}
+				else {
+					this->targetsMissed++;
 				
-				this->animations.push_back(new Animation(x, y));
-			
-			} else {
-				
-				this->targetsMissed++;
-			
+				}
+
 			}
-		
+
 		}
+
+	}
+	else {
+		this->mouseHeld = false;
 	
 	}
 
