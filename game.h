@@ -22,10 +22,6 @@ private:
 	sf::Sprite  background;
 	sf::IntRect frameBackground;
 
-	//Cursor
-	sf::Texture cursorTexture;
-	sf::Cursor cursor;
-
 	//Spawning Targets
 	float spawnBorderY;
 	float spawnBorderX;
@@ -59,7 +55,6 @@ private:
 	void initVariables();
 	void initWorld();
 	void initWindow();
-	void initCursor();
 
 public:
 	//Constructors / Destructors

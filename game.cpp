@@ -48,35 +48,12 @@ void Game::initWorld() {
 
 }
 
-void Game::initCursor() {
-
-	if (!this->cursorTexture.loadFromFile("textures/Lava.png"))	// needs texture
-		std::cout << "ERROR::GAME::Failed to load cursor texture" << "\n";
-
-	// convert texture to pixels according to chatgpt
-	sf::Image image = this->cursorTexture.copyToImage();
-	const sf::Uint8* pixels = image.getPixelsPtr();
-
-	// hide system cursor
-	this->window->setMouseCursorVisible(false);
-
-	if (cursor.loadFromPixels(pixels, this->cursorTexture.getSize(), { 0, 0 })) {
-		// Set the cursor
-		this->window->setMouseCursor(cursor);
-	}
-	else {	
-		std::cout << "ERROR::GAME::Failed to create cursor" << "\n";
-	}
-
-}
-
 //Constructors / Destructors
 Game::Game() {
 
 	this->initVariables();
 	this->initWindow();
 	this->initWorld();
-	//this->initCursor();
 
 }
 
