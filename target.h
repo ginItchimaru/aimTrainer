@@ -35,4 +35,3 @@ public:
 	void render(sf::RenderTarget& target);
 
 };
-

@@ -4,8 +4,8 @@
 
 int main() {
 
-	//Init srand							   // starts timer in seconds for the rng(random number generator)
-	srand(static_cast<unsigned>(time(NULL)));  // to make sure a new number is generated everytime
+	//Init srand
+	srand(static_cast<unsigned>(time(NULL)));
 												   
 	//init Game class
 	Game game;
@@ -21,7 +21,7 @@ int main() {
 	
 	}
 
-
 	//End of application
 	return 0;
+
 }

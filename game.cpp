@@ -17,6 +17,13 @@ void Game::initVariables() {
 
 	this->targetGap = 100.f;
 
+	//Physics
+	this->once = true;
+
+	//Crosshair
+	this->crosshairScale.y = 0.1;
+	this->crosshairScale.x = 0.1;
+
 	//Game logic
 	this->targetsMax = 3;
 	this->targetsHit = 0;
@@ -39,12 +46,29 @@ void Game::initWindow() {
 
 void Game::initWorld() {
 
-	if (!this->backgroundTexture.loadFromFile("textures/spaceBackgroundBig.png"))
-		std::cout << "ERROR::GAME::Failed to background texture" << "\n";
+	if (!this->backgroundTexture.loadFromFile("textures/spaceBackground3000x3000.png"))
+		std::cout << "ERROR::GAME::Failed to load background texture" << "\n";
+
 
 	this->background.setTexture(this->backgroundTexture);
 	this->frameBackground = sf::IntRect(560, 140, 800, 800);
 	this->background.setTextureRect(this->frameBackground);
+
+}
+
+void Game::initPhysics() {
+
+	this->window->setMouseCursorVisible(false);
+
+}
+
+void Game::initCrosshair() {
+	
+	if (!this->crosshairTexture.loadFromFile("textures/crosshair.png"))
+		std::cout << "ERROR::GAME::Failed to load crossair texture" << "\n";
+
+	this->crosshair.setTexture(this->crosshairTexture);
+	this->crosshair.setScale(this->crosshairScale);
 
 }
 
@@ -54,6 +78,8 @@ Game::Game() {
 	this->initVariables();
 	this->initWindow();
 	this->initWorld();
+	//this->initPhysics();
+	this->initCrosshair();
 
 }
 
@@ -62,6 +88,7 @@ Game::~Game() {
 	delete this->window;
 
 }
+
 
 //Accessors
 const bool Game::running() const {
@@ -189,11 +216,28 @@ bool Game::isValidSpawn(float newX, float newY) const {
 
 }
 
-void Game::updateMousePosition() {
+void Game::updatePhysics() {
+	
+	// int
+	this->mousePos = sf::Mouse::getPosition(*this->window);
+	// float
+	this->mousePosFloat = this->window->mapPixelToCoords(this->mousePos);
+	
+	//this->mousePos.y = window.getSize().x / 2;
+	//this->mousePos.x = window.getSize().y / 2;
 
-	this->mousePosWindow = sf::Mouse::getPosition(*this->window);	// mouse pos as integer
-	this->mousePosView = this->window->mapPixelToCoords(this->mousePosWindow);	// mouse pos as float
-	//std::cout << "y: " << this->mousePosWindow.y << " x: " << mousePosWindow.x << "\n";
+	std::cout << "x: " << this->mousePos.x << " y: " << this->mousePos.y << "\n";
+
+	this->mousePosFloat = this->window->mapPixelToCoords(this->mousePos);
+
+}
+
+void Game::updateCrosshair() {
+
+	this->crosshairPosX = static_cast<float>(this->frameBackground.width / 2) - this->crosshair.getGlobalBounds().width / 2;
+	this->crosshairPosY = static_cast<float>(this->frameBackground.height / 2) - this->crosshair.getGlobalBounds().height / 2;
+
+	this->crosshair.setPosition(this->crosshairPosX, this->crosshairPosY);
 
 }
 
@@ -208,7 +252,7 @@ void Game::updateTargetsAndAnimation() {
 
 			for (size_t i = 0; i < this->targets.size(); i++) {
 
-				if (this->targets[i]->getBounds().contains(this->mousePosView)) {
+				if (this->targets[i]->getBounds().contains(this->mousePosFloat)) {
 
 					float x = this->targets[i]->getPosition().x;
 					float y = this->targets[i]->getPosition().y;
@@ -232,7 +276,6 @@ void Game::updateTargetsAndAnimation() {
 	}
 	else {
 		this->mouseHeld = false;
-	
 	}
 
 	if (this->changedScreen) {
@@ -293,7 +336,9 @@ void Game::update() {
 
 	this->spawnTargets(*this->window);
 
-	this->updateMousePosition();
+	this->updatePhysics();
+	
+	this->updateCrosshair();
 
 	this->updateTargetsAndAnimation();
 
@@ -305,12 +350,21 @@ void Game::renderWorld() {
 
 }
 
+void Game::renderCrosshair() {
+
+	this->window->draw(this->crosshair);
+
+}
+
 void Game::render() {
 
 	this->window->clear();
 
 	//Draw world
 	this->renderWorld();
+
+	//Draw crossair
+	this->renderCrosshair();
 
 	//Render
 	for (auto *animation : this->animations) {

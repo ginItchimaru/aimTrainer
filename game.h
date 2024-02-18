@@ -29,12 +29,24 @@ private:
 	float spawnBorderFullscreenX;
 	float targetGap;
 
+	//Physics / Mouse
+	bool once;
+	sf::Vector2i mousePos;
+	sf::Vector2f mousePosFloat;
+	
+	bool mouseHeld;
+	
+	//Crossair
+	sf::Texture crosshairTexture;
+	sf::Sprite  crosshair;
+	sf::Vector2f crosshairScale;
+	float crosshairPosX;
+	float crosshairPosY;
+
 	//Game logic
 	int targetsMax;
 	int targetsHit;
 	int targetsMissed;
-
-	bool mouseHeld;
 	
 	std::vector<Target*> targets;
 
@@ -47,14 +59,13 @@ private:
 	sf::Event e;
 
 
-	//Mouse positions
-	sf::Vector2i mousePosWindow;
-	sf::Vector2f mousePosView;
 
 	//Private functions
 	void initVariables();
-	void initWorld();
 	void initWindow();
+	void initWorld();
+	void initPhysics();
+	void initCrosshair();
 
 public:
 	//Constructors / Destructors
@@ -70,10 +81,12 @@ public:
 	void spawnTargets(sf::RenderWindow& window);
 	bool isValidSpawn(float newX, float newY) const;
 	
-	void updateMousePosition();
+	void updatePhysics();
+	void updateCrosshair();
 	void updateTargetsAndAnimation();
 	void update();
 	
 	void renderWorld();
+	void renderCrosshair();
 	void render();
 };
