@@ -4,7 +4,7 @@
 
 //Private functions
 void Game::initVariables() {
-
+	
 	// window
 	this->window = nullptr;
 	this->fullscreen = false;
@@ -18,7 +18,7 @@ void Game::initVariables() {
 	this->targetGap = 100.f;
 
 	//Physics
-	this->once = true;
+	this->gameStart = true;
 
 	//Crosshair
 	this->crosshairScale.y = 0.1;
@@ -131,6 +131,9 @@ void Game::pollEvents() {
 					this->frameBackground.height = 1080.f;
 					this->background.setTextureRect(this->frameBackground);
 
+					// mouse
+					this->gameStart = true;
+
 				}
 				else {
 					
@@ -143,6 +146,9 @@ void Game::pollEvents() {
 					this->frameBackground.width = 800.f;
 					this->frameBackground.height = 800.f;
 					this->background.setTextureRect(this->frameBackground);
+
+					// mouse
+					this->gameStart = true;
 
 				}
 			
@@ -222,9 +228,15 @@ void Game::updatePhysics() {
 	this->mousePos = sf::Mouse::getPosition(*this->window);
 	// float
 	this->mousePosFloat = this->window->mapPixelToCoords(this->mousePos);
+
+	if (this->gameStart) {
+		
+		sf::Mouse::setPosition(sf::Vector2i(this->frameBackground.width / 2, this->frameBackground.height / 2), *this->window);
+		this->gameStart = false;
 	
-	//this->mousePos.y = window.getSize().x / 2;
-	//this->mousePos.x = window.getSize().y / 2;
+	}
+
+	sf::Vector2i defaultMousePos = sf::Mouse::getPosition(*this->window);
 
 	std::cout << "x: " << this->mousePos.x << " y: " << this->mousePos.y << "\n";
 

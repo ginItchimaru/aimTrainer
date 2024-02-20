@@ -11,6 +11,7 @@
 class Game {
 
 private:
+
 	//Variables
 	bool fullscreen;
 	bool changedScreen;
@@ -30,7 +31,7 @@ private:
 	float targetGap;
 
 	//Physics / Mouse
-	bool once;
+	bool gameStart;
 	sf::Vector2i mousePos;
 	sf::Vector2f mousePosFloat;
 	
