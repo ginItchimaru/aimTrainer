@@ -17,7 +17,7 @@ void Game::initVariables() {
 
 	this->targetGap = 100.f;
 
-	//Physics
+	//Mouse
 	this->gameStart = true;
 
 	//Crosshair
@@ -49,16 +49,9 @@ void Game::initWorld() {
 	if (!this->backgroundTexture.loadFromFile("textures/spaceBackground3000x3000.png"))
 		std::cout << "ERROR::GAME::Failed to load background texture" << "\n";
 
-
 	this->background.setTexture(this->backgroundTexture);
-	this->frameBackground = sf::IntRect(560, 140, 800, 800);
+	this->frameBackground = sf::IntRect(1100, 1100, 800, 800);
 	this->background.setTextureRect(this->frameBackground);
-
-}
-
-void Game::initPhysics() {
-
-	this->window->setMouseCursorVisible(false);
 
 }
 
@@ -70,6 +63,9 @@ void Game::initCrosshair() {
 	this->crosshair.setTexture(this->crosshairTexture);
 	this->crosshair.setScale(this->crosshairScale);
 
+	// make cursor invisible
+	this->window->setMouseCursorVisible(false);
+
 }
 
 //Constructors / Destructors
@@ -78,7 +74,6 @@ Game::Game() {
 	this->initVariables();
 	this->initWindow();
 	this->initWorld();
-	//this->initPhysics();
 	this->initCrosshair();
 
 }
@@ -125,14 +120,17 @@ void Game::pollEvents() {
 					this->window->create(sf::VideoMode::getDesktopMode(), "aim trainer", sf::Style::Fullscreen);
 					
 					// background
-					this->frameBackground.left = 0.f;
-					this->frameBackground.top = 0.f;
+					this->frameBackground.left = 540.f;
+					this->frameBackground.top = 960.f;
 					this->frameBackground.width = 1920.f;
 					this->frameBackground.height = 1080.f;
 					this->background.setTextureRect(this->frameBackground);
 
 					// mouse
 					this->gameStart = true;
+
+					// make cursor invisible
+					this->window->setMouseCursorVisible(false);
 
 				}
 				else {
@@ -141,14 +139,17 @@ void Game::pollEvents() {
 					this->window->create(sf::VideoMode(this->videoMode), "aim trainer", sf::Style::Close);
 					
 					// background
-					this->frameBackground.left = 560.f;
-					this->frameBackground.top = 140.f;
+					this->frameBackground.left = 1100.f;
+					this->frameBackground.top = 1100.f;
 					this->frameBackground.width = 800.f;
 					this->frameBackground.height = 800.f;
 					this->background.setTextureRect(this->frameBackground);
 
 					// mouse
 					this->gameStart = true;
+
+					// make cursor invisible
+					this->window->setMouseCursorVisible(false);
 
 				}
 			
@@ -222,18 +223,18 @@ bool Game::isValidSpawn(float newX, float newY) const {
 
 }
 
-void Game::updatePhysics() {
-	
+void Game::updateMouse() {
+
 	// int
 	this->mousePos = sf::Mouse::getPosition(*this->window);
 	// float
 	this->mousePosFloat = this->window->mapPixelToCoords(this->mousePos);
 
 	if (this->gameStart) {
-		
+
 		sf::Mouse::setPosition(sf::Vector2i(this->frameBackground.width / 2, this->frameBackground.height / 2), *this->window);
 		this->gameStart = false;
-	
+
 	}
 
 	sf::Vector2i defaultMousePos = sf::Mouse::getPosition(*this->window);
@@ -246,10 +247,48 @@ void Game::updatePhysics() {
 
 void Game::updateCrosshair() {
 
+	// set position
 	this->crosshairPosX = static_cast<float>(this->frameBackground.width / 2) - this->crosshair.getGlobalBounds().width / 2;
 	this->crosshairPosY = static_cast<float>(this->frameBackground.height / 2) - this->crosshair.getGlobalBounds().height / 2;
 
 	this->crosshair.setPosition(this->crosshairPosX, this->crosshairPosY);
+
+	// move
+	if (this->mousePosFloat.x != this->frameBackground.width / 2 || this->mousePosFloat.y != this->frameBackground.height) {
+
+		// Define a scaling factor based on the distance
+		float scaleFactor = 1.f;
+
+		if (this->mousePosFloat.x < this->frameBackground.width / 2) {
+			
+			float mouseMoved = this->frameBackground.width / 2 - this->mousePosFloat.x;
+			this->frameBackground.left -= mouseMoved * scaleFactor;
+			
+			if (this->frameBackground.left < 0.f)
+				this->frameBackground.left = 0.f;
+			
+			this->background.setTextureRect(this->frameBackground);
+			
+			// recentering mouse
+			sf::Mouse::setPosition(sf::Vector2i(this->frameBackground.width / 2, this->frameBackground.height / 2), *this->window);
+
+		}
+		else if (this->mousePosFloat.x > this->frameBackground.width / 2) {
+			
+			float mouseMoved = this->mousePosFloat.x - this->frameBackground.width / 2;
+			this->frameBackground.left += mouseMoved * scaleFactor;
+			
+			if (this->frameBackground.left > 3000.f)
+				this->frameBackground.left = 3000.f;
+			
+			this->background.setTextureRect(this->frameBackground);
+			
+			// recentering mouse
+			sf::Mouse::setPosition(sf::Vector2i(this->frameBackground.width / 2, this->frameBackground.height / 2), *this->window);
+		
+		}
+	
+	}
 
 }
 
@@ -348,7 +387,7 @@ void Game::update() {
 
 	this->spawnTargets(*this->window);
 
-	this->updatePhysics();
+	this->updateMouse();
 	
 	this->updateCrosshair();
 
@@ -375,8 +414,6 @@ void Game::render() {
 	//Draw world
 	this->renderWorld();
 
-	//Draw crossair
-	this->renderCrosshair();
 
 	//Render
 	for (auto *animation : this->animations) {
@@ -390,6 +427,9 @@ void Game::render() {
 		target->render(*this->window);
 
 	}
+	
+	//Draw crosshair
+	this->renderCrosshair();
 	
 	this->window->display();
 

@@ -30,19 +30,20 @@ private:
 	float spawnBorderFullscreenX;
 	float targetGap;
 
-	//Physics / Mouse
-	bool gameStart;
-	sf::Vector2i mousePos;
-	sf::Vector2f mousePosFloat;
-	
-	bool mouseHeld;
-	
 	//Crossair
 	sf::Texture crosshairTexture;
 	sf::Sprite  crosshair;
 	sf::Vector2f crosshairScale;
 	float crosshairPosX;
 	float crosshairPosY;
+
+	//Mouse
+	sf::Vector2i mousePos;
+	sf::Vector2f mousePosFloat;
+
+	bool gameStart;
+	bool mouseHeld;
+	
 
 	//Game logic
 	int targetsMax;
@@ -65,7 +66,6 @@ private:
 	void initVariables();
 	void initWindow();
 	void initWorld();
-	void initPhysics();
 	void initCrosshair();
 
 public:
@@ -82,7 +82,7 @@ public:
 	void spawnTargets(sf::RenderWindow& window);
 	bool isValidSpawn(float newX, float newY) const;
 	
-	void updatePhysics();
+	void updateMouse();
 	void updateCrosshair();
 	void updateTargetsAndAnimation();
 	void update();
