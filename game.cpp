@@ -20,9 +20,11 @@ void Game::initVariables() {
 	//Mouse
 	this->gameStart = true;
 
+	this->mouseSensScale = 1.f;
+
 	//Crosshair
-	this->crosshairScale.y = 0.1;
-	this->crosshairScale.x = 0.1;
+	this->crosshairScale.y = 0.1f;
+	this->crosshairScale.x = 0.1f;
 
 	//Game logic
 	this->targetsMax = 3;
@@ -256,13 +258,10 @@ void Game::updateCrosshair() {
 	// move
 	if (this->mousePosFloat.x != this->frameBackground.width / 2 || this->mousePosFloat.y != this->frameBackground.height) {
 
-		// Define a scaling factor based on the distance
-		float scaleFactor = 1.f;
-
 		if (this->mousePosFloat.x < this->frameBackground.width / 2) {
 			
-			float mouseMoved = this->frameBackground.width / 2 - this->mousePosFloat.x;
-			this->frameBackground.left -= mouseMoved * scaleFactor;
+			float mouseMovedX = this->frameBackground.width / 2 - this->mousePosFloat.x;
+			this->frameBackground.left -= mouseMovedX * mouseSensScale;
 			
 			if (this->frameBackground.left < 0.f)
 				this->frameBackground.left = 0.f;
@@ -275,14 +274,43 @@ void Game::updateCrosshair() {
 		}
 		else if (this->mousePosFloat.x > this->frameBackground.width / 2) {
 			
-			float mouseMoved = this->mousePosFloat.x - this->frameBackground.width / 2;
-			this->frameBackground.left += mouseMoved * scaleFactor;
+			float mouseMovedX = this->mousePosFloat.x - this->frameBackground.width / 2;
+			this->frameBackground.left += mouseMovedX * mouseSensScale;
 			
-			if (this->frameBackground.left > 3000.f)
-				this->frameBackground.left = 3000.f;
+			if (this->frameBackground.left > 3000.f - this->frameBackground.width)
+				this->frameBackground.left = 3000.f - this->frameBackground.width;
 			
 			this->background.setTextureRect(this->frameBackground);
 			
+			// recentering mouse
+			sf::Mouse::setPosition(sf::Vector2i(this->frameBackground.width / 2, this->frameBackground.height / 2), *this->window);
+		
+		}
+
+		if (this->mousePosFloat.y < this->frameBackground.height / 2) {
+		
+			float mouseMovedY = this->frameBackground.height / 2 - this->mousePosFloat.y;
+			this->frameBackground.top -= mouseMovedY * mouseSensScale;
+		
+			if (this->frameBackground.top < 0.f)
+				this->frameBackground.top = 0.f;
+		
+			this->background.setTextureRect(this->frameBackground);
+		
+			// recentering mouse
+			sf::Mouse::setPosition(sf::Vector2i(this->frameBackground.width / 2, this->frameBackground.height / 2), *this->window);
+		
+		}
+		else if (this->mousePosFloat.y > this->frameBackground.height / 2) {
+		
+			float mouseMovedY = this->mousePosFloat.y - this->frameBackground.height / 2;
+			this->frameBackground.top += mouseMovedY * mouseSensScale;
+		
+			if (this->frameBackground.top > 3000.f - this->frameBackground.height)
+				this->frameBackground.top = 3000.f - this->frameBackground.height;
+		
+			this->background.setTextureRect(this->frameBackground);
+		
 			// recentering mouse
 			sf::Mouse::setPosition(sf::Vector2i(this->frameBackground.width / 2, this->frameBackground.height / 2), *this->window);
 		
@@ -423,9 +451,9 @@ void Game::render() {
 	}
 
 	for (auto *target : this->targets) {
-
+	
 		target->render(*this->window);
-
+	
 	}
 	
 	//Draw crosshair

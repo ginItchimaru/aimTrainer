@@ -44,6 +44,7 @@ private:
 	bool gameStart;
 	bool mouseHeld;
 	
+	float mouseSensScale;
 
 	//Game logic
 	int targetsMax;
