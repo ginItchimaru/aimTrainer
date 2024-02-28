@@ -48,11 +48,11 @@ void Game::initWindow() {
 
 void Game::initWorld() {
 
-	if (!this->backgroundTexture.loadFromFile("textures/spaceBackground3000x3000.png"))
+	if (!this->backgroundTexture.loadFromFile("textures/spaceBackground3000x2000.png"))
 		std::cout << "ERROR::GAME::Failed to load background texture" << "\n";
 
 	this->background.setTexture(this->backgroundTexture);
-	this->frameBackground = sf::IntRect(1100, 1100, 800, 800);
+	this->frameBackground = sf::IntRect(1100, 600, 800, 800);
 	this->background.setTextureRect(this->frameBackground);
 
 }
@@ -123,7 +123,7 @@ void Game::pollEvents() {
 					
 					// background
 					this->frameBackground.left = 540.f;
-					this->frameBackground.top = 960.f;
+					this->frameBackground.top = 460.f;
 					this->frameBackground.width = 1920.f;
 					this->frameBackground.height = 1080.f;
 					this->background.setTextureRect(this->frameBackground);
@@ -142,7 +142,7 @@ void Game::pollEvents() {
 					
 					// background
 					this->frameBackground.left = 1100.f;
-					this->frameBackground.top = 1100.f;
+					this->frameBackground.top = 600.f;
 					this->frameBackground.width = 800.f;
 					this->frameBackground.height = 800.f;
 					this->background.setTextureRect(this->frameBackground);
@@ -306,8 +306,8 @@ void Game::updateCrosshair() {
 			float mouseMovedY = this->mousePosFloat.y - this->frameBackground.height / 2;
 			this->frameBackground.top += mouseMovedY * mouseSensScale;
 		
-			if (this->frameBackground.top > 3000.f - this->frameBackground.height)
-				this->frameBackground.top = 3000.f - this->frameBackground.height;
+			if (this->frameBackground.top > 2000.f - this->frameBackground.height)
+				this->frameBackground.top = 2000.f - this->frameBackground.height;
 		
 			this->background.setTextureRect(this->frameBackground);
 		
