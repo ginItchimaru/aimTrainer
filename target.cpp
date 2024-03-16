@@ -53,6 +53,12 @@ const sf::Vector2f Target::getPosition() const {
 
 }
 
+void Target::setPosition(float x, float y) {
+
+	this->sprite.setPosition(x, y);
+
+}
+
 void Target::update() {
 
 

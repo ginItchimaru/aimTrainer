@@ -31,6 +31,8 @@ public:
 	const sf::FloatRect getBounds() const;
 	const sf::Vector2f getPosition() const;
 
+	void setPosition(float x, float y);
+
 	void update();
 	void render(sf::RenderTarget& target);
 

@@ -12,8 +12,8 @@ void Game::initVariables() {
 	//Spawning targets
 	this->spawnBorderY = 200.f;
 	this->spawnBorderX = 250.f;
-	this->spawnBorderFullscreenY = 200.f;
-	this->spawnBorderFullscreenX = 500.f;
+	this->spawnBorderFullscreenX = 0.f;
+	this->spawnBorderFullscreenY = 0.f;
 
 	this->targetGap = 100.f;
 
@@ -256,6 +256,7 @@ void Game::updateCrosshair() {
 	this->crosshair.setPosition(this->crosshairPosX, this->crosshairPosY);
 
 	// move
+	// background and targets
 	if (this->mousePosFloat.x != this->frameBackground.width / 2 || this->mousePosFloat.y != this->frameBackground.height) {
 
 		if (this->mousePosFloat.x < this->frameBackground.width / 2) {
@@ -267,6 +268,17 @@ void Game::updateCrosshair() {
 				this->frameBackground.left = 0.f;
 			
 			this->background.setTextureRect(this->frameBackground);
+
+			if (this->frameBackground.left > 0.f) {
+
+				for (size_t i = 0; i < this->targets.size(); i++) {
+
+					float newTargetPosX = this->targets[i]->getPosition().x + (mouseMovedX * 0.9f);
+					this->targets[i]->setPosition(newTargetPosX, this->targets[i]->getPosition().y);
+
+				}
+
+			}
 			
 			// recentering mouse
 			sf::Mouse::setPosition(sf::Vector2i(this->frameBackground.width / 2, this->frameBackground.height / 2), *this->window);
@@ -281,6 +293,17 @@ void Game::updateCrosshair() {
 				this->frameBackground.left = 3000.f - this->frameBackground.width;
 			
 			this->background.setTextureRect(this->frameBackground);
+
+			if (this->frameBackground.left < 3000.f - this->frameBackground.width) {
+
+				for (size_t i = 0; i < this->targets.size(); i++) {
+
+					float newTargetPosX = this->targets[i]->getPosition().x - (mouseMovedX * 0.9f);
+					this->targets[i]->setPosition(newTargetPosX, this->targets[i]->getPosition().y);
+
+				}
+
+			}
 			
 			// recentering mouse
 			sf::Mouse::setPosition(sf::Vector2i(this->frameBackground.width / 2, this->frameBackground.height / 2), *this->window);
@@ -296,6 +319,17 @@ void Game::updateCrosshair() {
 				this->frameBackground.top = 0.f;
 		
 			this->background.setTextureRect(this->frameBackground);
+
+			if (this->frameBackground.top > 0.f) {
+
+				for (size_t i = 0; i < this->targets.size(); i++) {
+
+					float newTargetPosY = this->targets[i]->getPosition().y + (mouseMovedY * 0.9f);
+					this->targets[i]->setPosition(this->targets[i]->getPosition().x, newTargetPosY);
+
+				}
+
+			}
 		
 			// recentering mouse
 			sf::Mouse::setPosition(sf::Vector2i(this->frameBackground.width / 2, this->frameBackground.height / 2), *this->window);
@@ -310,6 +344,20 @@ void Game::updateCrosshair() {
 				this->frameBackground.top = 2000.f - this->frameBackground.height;
 		
 			this->background.setTextureRect(this->frameBackground);
+
+			if (this->frameBackground.top < 2000.f - this->frameBackground.height) {
+				
+				for (size_t i = 0; i < this->targets.size(); i++) {
+
+					float targetBorderTop = 2000.f - this->frameBackground.height + this->targets[i]->getBounds().width;
+
+					float newTargetPosY = this->targets[i]->getPosition().y - (mouseMovedY * 0.9f);
+					this->targets[i]->setPosition(this->targets[i]->getPosition().x, newTargetPosY);
+
+
+				}
+			
+			}
 		
 			// recentering mouse
 			sf::Mouse::setPosition(sf::Vector2i(this->frameBackground.width / 2, this->frameBackground.height / 2), *this->window);
