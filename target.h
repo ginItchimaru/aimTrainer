@@ -10,6 +10,8 @@
 class Target {
 
 private:
+	float spawnPosX;
+	float spawnPosY;
 	
 	sf::Vector2f scale;
 	int shapeSize;
@@ -23,14 +25,15 @@ private:
 
 
 public:
-
 	Target(float x, float);
 	~Target();
 
 	//Accessors
 	const sf::FloatRect getBounds() const;
 	const sf::Vector2f getPosition() const;
+	const sf::Vector2f getSpawnPos() const;
 
+	//Mutators
 	void setPosition(float x, float y);
 
 	void update();

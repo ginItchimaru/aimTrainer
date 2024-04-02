@@ -19,9 +19,14 @@ private:
 	void initAnimations();
 
 public:
-
 	Animation(float x, float y);
 	~Animation();
+	
+	//Accessors
+	const sf::Vector2f getPosition() const;
+
+	//Mutators
+	void setPosition(float x, float y);
 
 	const bool animationOver() const;
 

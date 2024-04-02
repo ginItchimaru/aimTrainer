@@ -50,6 +50,18 @@ Animation::~Animation() {
 
 }
 
+const sf::Vector2f Animation::getPosition() const {
+
+	return this->sprite.getPosition();
+
+}
+
+void Animation::setPosition(float x, float y) {
+
+	this->sprite.setPosition(x, y);
+
+}
+
 const bool Animation::animationOver() const {
 	
 	return this->animationFinished;

@@ -11,7 +11,6 @@
 class Game {
 
 private:
-
 	//Variables
 	bool fullscreen;
 	bool changedScreen;
@@ -24,10 +23,10 @@ private:
 	sf::IntRect frameBackground;
 
 	//Spawning Targets
-	float spawnBorderY;
 	float spawnBorderX;
-	float spawnBorderFullscreenY;
+	float spawnBorderY;
 	float spawnBorderFullscreenX;
+	float spawnBorderFullscreenY;
 	float targetGap;
 
 	//Crossair

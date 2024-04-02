@@ -83,6 +83,6 @@ C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(344,40): warning C
   Generating code
   3 of 244 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   aimTrainer.vcxproj -> C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\x64\Release\aimTrainer.exe

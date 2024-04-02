@@ -249,32 +249,46 @@ void Game::updateMouse() {
 
 void Game::updateCrosshair() {
 
-	// set position
+	// set crosshair position
 	this->crosshairPosX = static_cast<float>(this->frameBackground.width / 2) - this->crosshair.getGlobalBounds().width / 2;
 	this->crosshairPosY = static_cast<float>(this->frameBackground.height / 2) - this->crosshair.getGlobalBounds().height / 2;
 
 	this->crosshair.setPosition(this->crosshairPosX, this->crosshairPosY);
 
-	// move
-	// background and targets
+	// move background and targets
+	// in contrast to mouse position
+	// to make crosshair work
 	if (this->mousePosFloat.x != this->frameBackground.width / 2 || this->mousePosFloat.y != this->frameBackground.height) {
 
 		if (this->mousePosFloat.x < this->frameBackground.width / 2) {
 			
+			// move background
 			float mouseMovedX = this->frameBackground.width / 2 - this->mousePosFloat.x;
 			this->frameBackground.left -= mouseMovedX * mouseSensScale;
 			
+			// background border
 			if (this->frameBackground.left < 0.f)
 				this->frameBackground.left = 0.f;
 			
+			// set background texture after its being moved
 			this->background.setTextureRect(this->frameBackground);
 
+			// move targets and animation
 			if (this->frameBackground.left > 0.f) {
 
+				// targets
 				for (size_t i = 0; i < this->targets.size(); i++) {
 
 					float newTargetPosX = this->targets[i]->getPosition().x + (mouseMovedX * 0.9f);
 					this->targets[i]->setPosition(newTargetPosX, this->targets[i]->getPosition().y);
+
+				}
+
+				// animations
+				for (size_t i = 0; i < this->animations.size(); i++) {
+
+					float newAnimationPosX = this->animations[i]->getPosition().x + (mouseMovedX * 0.9f);
+					this->animations[i]->setPosition(newAnimationPosX, this->animations[i]->getPosition().y);
 
 				}
 
@@ -286,20 +300,33 @@ void Game::updateCrosshair() {
 		}
 		else if (this->mousePosFloat.x > this->frameBackground.width / 2) {
 			
+			// move background
 			float mouseMovedX = this->mousePosFloat.x - this->frameBackground.width / 2;
 			this->frameBackground.left += mouseMovedX * mouseSensScale;
 			
+			// background border
 			if (this->frameBackground.left > 3000.f - this->frameBackground.width)
 				this->frameBackground.left = 3000.f - this->frameBackground.width;
 			
+			// set background texture after its being moved
 			this->background.setTextureRect(this->frameBackground);
 
+			// move targets and animation
 			if (this->frameBackground.left < 3000.f - this->frameBackground.width) {
 
+				// targets
 				for (size_t i = 0; i < this->targets.size(); i++) {
 
 					float newTargetPosX = this->targets[i]->getPosition().x - (mouseMovedX * 0.9f);
 					this->targets[i]->setPosition(newTargetPosX, this->targets[i]->getPosition().y);
+
+				}
+
+				// animations
+				for (size_t i = 0; i < this->animations.size(); i++) {
+
+					float newAnimationPosX = this->animations[i]->getPosition().x - (mouseMovedX * 0.9f);
+					this->animations[i]->setPosition(newAnimationPosX, this->animations[i]->getPosition().y);
 
 				}
 
@@ -311,21 +338,34 @@ void Game::updateCrosshair() {
 		}
 
 		if (this->mousePosFloat.y < this->frameBackground.height / 2) {
-		
+			
+			// move background
 			float mouseMovedY = this->frameBackground.height / 2 - this->mousePosFloat.y;
 			this->frameBackground.top -= mouseMovedY * mouseSensScale;
-		
+			
+			// background border
 			if (this->frameBackground.top < 0.f)
 				this->frameBackground.top = 0.f;
-		
+			
+			// set background texture after its being moved
 			this->background.setTextureRect(this->frameBackground);
 
+			// move targets and animation
 			if (this->frameBackground.top > 0.f) {
 
+				// targets
 				for (size_t i = 0; i < this->targets.size(); i++) {
 
 					float newTargetPosY = this->targets[i]->getPosition().y + (mouseMovedY * 0.9f);
 					this->targets[i]->setPosition(this->targets[i]->getPosition().x, newTargetPosY);
+
+				}
+
+				// animations
+				for (size_t i = 0; i < this->animations.size(); i++) {
+
+					float newAnimationPosY = this->animations[i]->getPosition().y + (mouseMovedY * 0.9f);
+					this->animations[i]->setPosition(this->animations[i]->getPosition().x, newAnimationPosY);
 
 				}
 
@@ -336,24 +376,34 @@ void Game::updateCrosshair() {
 		
 		}
 		else if (this->mousePosFloat.y > this->frameBackground.height / 2) {
-		
+			
+			// move background
 			float mouseMovedY = this->mousePosFloat.y - this->frameBackground.height / 2;
 			this->frameBackground.top += mouseMovedY * mouseSensScale;
-		
+			
+			// background border
 			if (this->frameBackground.top > 2000.f - this->frameBackground.height)
 				this->frameBackground.top = 2000.f - this->frameBackground.height;
 		
+			// set background texture after its being moved
 			this->background.setTextureRect(this->frameBackground);
 
+			// move targets and animation
 			if (this->frameBackground.top < 2000.f - this->frameBackground.height) {
 				
+				// targets
 				for (size_t i = 0; i < this->targets.size(); i++) {
-
-					float targetBorderTop = 2000.f - this->frameBackground.height + this->targets[i]->getBounds().width;
 
 					float newTargetPosY = this->targets[i]->getPosition().y - (mouseMovedY * 0.9f);
 					this->targets[i]->setPosition(this->targets[i]->getPosition().x, newTargetPosY);
 
+				}
+
+				// animations
+				for (size_t i = 0; i < this->animations.size(); i++) {
+
+					float newAnimationPosY = this->animations[i]->getPosition().y - (mouseMovedY * 0.9f);
+					this->animations[i]->setPosition(this->animations[i]->getPosition().x, newAnimationPosY);
 
 				}
 			
@@ -383,6 +433,8 @@ void Game::updateTargetsAndAnimation() {
 
 					float x = this->targets[i]->getPosition().x;
 					float y = this->targets[i]->getPosition().y;
+					//float x = this->targets[i]->getSpawnPos().x;
+					//float y = this->targets[i]->getSpawnPos().y;
 
 					delete this->targets[i];
 					this->targets.erase(this->targets.begin() + i);
