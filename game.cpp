@@ -1,5 +1,6 @@
 #include "game.h"
 #include <iostream>
+#include <algorithm>
 
 
 //Private functions
@@ -10,8 +11,8 @@ void Game::initVariables() {
 	this->fullscreen = false;
 
 	//Spawning targets
-	this->spawnBorderY = 200.f;
-	this->spawnBorderX = 250.f;
+	this->spawnBorderY = 600.f;
+	this->spawnBorderX = 600.f;
 	this->spawnBorderFullscreenX = 0.f;
 	this->spawnBorderFullscreenY = 0.f;
 
@@ -48,12 +49,15 @@ void Game::initWindow() {
 
 void Game::initWorld() {
 
-	if (!this->backgroundTexture.loadFromFile("textures/spaceBackground3000x2000.png"))
+	if (!this->backgroundTexture.loadFromFile("textures/spaceBackground3000x3000.png"))
 		std::cout << "ERROR::GAME::Failed to load background texture" << "\n";
 
 	this->background.setTexture(this->backgroundTexture);
-	this->frameBackground = sf::IntRect(1100, 600, 800, 800);
+	this->frameBackground = sf::IntRect(1100, 1100, 800, 800);
 	this->background.setTextureRect(this->frameBackground);
+
+	this->backgroundWidth = 3000.f;
+	this->backgroundHeight = 3000.f;
 
 }
 
@@ -123,7 +127,7 @@ void Game::pollEvents() {
 					
 					// background
 					this->frameBackground.left = 540.f;
-					this->frameBackground.top = 460.f;
+					this->frameBackground.top = 960.f;
 					this->frameBackground.width = 1920.f;
 					this->frameBackground.height = 1080.f;
 					this->background.setTextureRect(this->frameBackground);
@@ -142,7 +146,7 @@ void Game::pollEvents() {
 					
 					// background
 					this->frameBackground.left = 1100.f;
-					this->frameBackground.top = 600.f;
+					this->frameBackground.top = 1100.f;
 					this->frameBackground.width = 800.f;
 					this->frameBackground.height = 800.f;
 					this->background.setTextureRect(this->frameBackground);
@@ -174,20 +178,58 @@ void Game::spawnTargets(sf::RenderWindow& window) {
 
 	if (!this->fullscreen) {
 
-		minX = this->spawnBorderX;
-		maxX = window.getSize().x - this->spawnBorderX;
-		minY = this->spawnBorderY;
-		maxY = window.getSize().y - this->spawnBorderY;
+		// X
+		if (this->frameBackground.left < this->frameBackground.width / 2) {
+
+			minX = 800.f;
+			maxX = 1200.f;
+
+		}
+		// 2200.f = max frameBackground.left - border = 400.f
+		else if (this->frameBackground.left > this->frameBackground.width / 2 && this->frameBackground.left < 1800.f) {
+
+			minX = 0.f;
+			maxX = 800.f;
+
+		}
+		else {
+
+			minX = -800.f;
+			maxX = 0.f;
+
+		}
+
+		// Y
+		if (this->frameBackground.top < this->frameBackground.height / 2) {
+
+			minY = 800.f;
+			maxY = 1200.f;
+
+		}
+		else if (this->frameBackground.top > this->frameBackground.height / 2 && this->frameBackground.top < 1800.f) {
+
+			minY = 0.f;
+			maxY = 800.f;
+
+		}
+		else {
+
+			minY = -800.f;
+			maxY = 0.f;
+
+		}
 
 	}
 	else {
 
-		minX = this->spawnBorderFullscreenX;
-		maxX = window.getSize().x - this->spawnBorderFullscreenX;
-		minY = this->spawnBorderFullscreenY;
-		maxY = window.getSize().y - this->spawnBorderFullscreenY;
+		minX = this->spawnBorderX - this->frameBackground.left;
+		maxX = this->frameBackground.left + this->frameBackground.width - this->spawnBorderX;
+		minY = this->spawnBorderY - this->frameBackground.top;
+		maxY = this->frameBackground.top + -this->spawnBorderY;
 
 	}
+
+	//std::cout << "maxX: " << maxX << "	" << "maxY: " << maxY << "\n";
 	
 	float randX, randY;
 
@@ -241,7 +283,7 @@ void Game::updateMouse() {
 
 	sf::Vector2i defaultMousePos = sf::Mouse::getPosition(*this->window);
 
-	std::cout << "x: " << this->mousePos.x << " y: " << this->mousePos.y << "\n";
+	//std::cout << "x: " << this->mousePos.x << " y: " << this->mousePos.y << "\n";
 
 	this->mousePosFloat = this->window->mapPixelToCoords(this->mousePos);
 
@@ -254,6 +296,8 @@ void Game::updateCrosshair() {
 	this->crosshairPosY = static_cast<float>(this->frameBackground.height / 2) - this->crosshair.getGlobalBounds().height / 2;
 
 	this->crosshair.setPosition(this->crosshairPosX, this->crosshairPosY);
+
+	std::cout << "frameBackground.left: " << this->frameBackground.left << "	" << "frameBackground.top: " << this->frameBackground.top << "\n";
 
 	// move background and targets
 	// in contrast to mouse position
@@ -305,14 +349,14 @@ void Game::updateCrosshair() {
 			this->frameBackground.left += mouseMovedX * mouseSensScale;
 			
 			// background border
-			if (this->frameBackground.left > 3000.f - this->frameBackground.width)
-				this->frameBackground.left = 3000.f - this->frameBackground.width;
+			if (this->frameBackground.left > this->backgroundWidth - this->frameBackground.width)
+				this->frameBackground.left = this->backgroundWidth - this->frameBackground.width;
 			
 			// set background texture after its being moved
 			this->background.setTextureRect(this->frameBackground);
 
 			// move targets and animation
-			if (this->frameBackground.left < 3000.f - this->frameBackground.width) {
+			if (this->frameBackground.left < this->backgroundWidth - this->frameBackground.width) {
 
 				// targets
 				for (size_t i = 0; i < this->targets.size(); i++) {
@@ -382,14 +426,14 @@ void Game::updateCrosshair() {
 			this->frameBackground.top += mouseMovedY * mouseSensScale;
 			
 			// background border
-			if (this->frameBackground.top > 2000.f - this->frameBackground.height)
-				this->frameBackground.top = 2000.f - this->frameBackground.height;
+			if (this->frameBackground.top > this->backgroundHeight - this->frameBackground.height)
+				this->frameBackground.top = this->backgroundHeight - this->frameBackground.height;
 		
 			// set background texture after its being moved
 			this->background.setTextureRect(this->frameBackground);
 
 			// move targets and animation
-			if (this->frameBackground.top < 2000.f - this->frameBackground.height) {
+			if (this->frameBackground.top < this->backgroundHeight - this->frameBackground.height) {
 				
 				// targets
 				for (size_t i = 0; i < this->targets.size(); i++) {
@@ -433,8 +477,6 @@ void Game::updateTargetsAndAnimation() {
 
 					float x = this->targets[i]->getPosition().x;
 					float y = this->targets[i]->getPosition().y;
-					//float x = this->targets[i]->getSpawnPos().x;
-					//float y = this->targets[i]->getSpawnPos().y;
 
 					delete this->targets[i];
 					this->targets.erase(this->targets.begin() + i);

@@ -22,6 +22,10 @@ private:
 	sf::Sprite  background;
 	sf::IntRect frameBackground;
 
+	//Background
+	float backgroundWidth;
+	float backgroundHeight;
+
 	//Spawning Targets
 	float spawnBorderX;
 	float spawnBorderY;

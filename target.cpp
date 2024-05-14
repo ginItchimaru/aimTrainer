@@ -32,8 +32,6 @@ Target::Target(float x, float y) {
 	this->initTarget();
 
 	this->sprite.setPosition(x, y);
-	this->spawnPosX = x;
-	this->spawnPosY = y;
 
 }
 
@@ -52,12 +50,6 @@ const sf::FloatRect Target::getBounds() const {
 const sf::Vector2f Target::getPosition() const {
 
 	return this->sprite.getPosition();
-
-}
-
-const sf::Vector2f Target::getSpawnPos() const {
-
-	return sf::Vector2f(this->spawnPosX, this->spawnPosY);
 
 }
 

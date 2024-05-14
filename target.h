@@ -31,7 +31,6 @@ public:
 	//Accessors
 	const sf::FloatRect getBounds() const;
 	const sf::Vector2f getPosition() const;
-	const sf::Vector2f getSpawnPos() const;
 
 	//Mutators
 	void setPosition(float x, float y);

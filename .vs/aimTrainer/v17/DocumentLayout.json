@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|solutionrelative:game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|solutionrelative:game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -15,20 +19,16 @@
       "RelativeMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|solutionrelative:animation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\target.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|solutionrelative:target.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\animation.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|solutionrelative:animation.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\target.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|solutionrelative:target.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\target.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|solutionrelative:target.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|solutionrelative:game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\target.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B0D3EA64-30F2-4548-BCDB-D8A94F4F6CAC}|aimTrainer.vcxproj|solutionrelative:target.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,29 +50,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "target.h",
               "DocumentMoniker": "C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\target.h",
               "RelativeDocumentMoniker": "target.h",
               "ToolTip": "C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\target.h",
               "RelativeToolTip": "target.h",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAACAAAAABAAAA",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAqwCgAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-01-12T14:19:58.057Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-01-12T14:19:58.057Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "target.cpp",
               "DocumentMoniker": "C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\target.cpp",
               "RelativeDocumentMoniker": "target.cpp",
               "ToolTip": "C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\target.cpp",
               "RelativeToolTip": "target.cpp",
-              "ViewState": "AQIAACsAAAAAAAAAAAAawDUAAAAjAAAA",
+              "ViewState": "AQIAABwAAAAAAAAAAAAawDUAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-01-12T14:19:58.176Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-01-12T14:19:58.176Z"
             },
             {
               "$type": "Document",
@@ -84,31 +82,29 @@
               "RelativeToolTip": "animation.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-01-17T11:58:45.578Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-01-17T11:58:45.578Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "animation.cpp",
               "DocumentMoniker": "C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\animation.cpp",
               "RelativeDocumentMoniker": "animation.cpp",
               "ToolTip": "C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\animation.cpp",
               "RelativeToolTip": "animation.cpp",
-              "ViewState": "AQIAACEAAAAAAAAAAAAawDYAAAAjAAAA",
+              "ViewState": "AQIAADkAAAAAAAAAAAAawDYAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-01-17T11:58:58.42Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-01-17T11:58:58.42Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "game.h",
               "DocumentMoniker": "C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\game.h",
               "RelativeDocumentMoniker": "game.h",
               "ToolTip": "C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\game.h",
               "RelativeToolTip": "game.h",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA0AAAABAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABkAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-01-12T14:19:58.177Z",
               "EditorCaption": ""
@@ -121,14 +117,14 @@
               "RelativeDocumentMoniker": "game.cpp",
               "ToolTip": "C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\game.cpp",
               "RelativeToolTip": "game.cpp",
-              "ViewState": "AQIAABEBAAAAAAAAAADwvyEBAABZAAAA",
+              "ViewState": "AQIAAF4AAAAAAAAAAAASwIMAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-01-12T14:19:58.275Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\linoi\\scripts\\games\\sfmlProjects\\aimTrainer\\main.cpp",
               "RelativeDocumentMoniker": "main.cpp",
@@ -136,8 +132,7 @@
               "RelativeToolTip": "main.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-01-12T14:19:58.536Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-01-12T14:19:58.536Z"
             }
           ]
         }

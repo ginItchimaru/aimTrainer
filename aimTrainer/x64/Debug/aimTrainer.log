@@ -1,0 +1,97 @@
+﻿  animation.cpp
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\animation.cpp(77,30): warning C4244: '+=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\animation.cpp(77,30): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\animation.cpp(77,30): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\animation.cpp(77,30): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\animation.cpp(77,30): warning C4244:         ]
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\animation.cpp(80,30): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\animation.cpp(80,30): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\animation.cpp(80,30): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\animation.cpp(80,30): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\animation.cpp(80,30): warning C4244:         ]
+  game.cpp
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(126,35): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(126,35): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(126,35): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(126,35): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(126,35): warning C4244:         ]
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(127,34): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(127,34): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(127,34): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(127,34): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(127,34): warning C4244:         ]
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(128,36): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(128,36): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(128,36): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(128,36): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(128,36): warning C4244:         ]
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(129,37): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(129,37): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(129,37): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(129,37): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(129,37): warning C4244:         ]
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(145,35): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(145,35): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(145,35): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(145,35): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(145,35): warning C4244:         ]
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(146,34): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(146,34): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(146,34): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(146,34): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(146,34): warning C4244:         ]
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(147,36): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(147,36): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(147,36): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(147,36): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(147,36): warning C4244:         ]
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(148,37): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(148,37): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(148,37): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(148,37): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(148,37): warning C4244:         ]
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(242,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(297,46): warning C4244: '-=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(297,46): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(297,46): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(297,46): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(297,46): warning C4244:         ]
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(301,34): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(301,34): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(301,34): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(301,34): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(301,34): warning C4244:         ]
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(335,46): warning C4244: '+=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(335,46): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(335,46): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(335,46): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(335,46): warning C4244:         ]
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(339,41): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(339,41): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(339,41): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(339,41): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(339,41): warning C4244:         ]
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(374,45): warning C4244: '-=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(374,45): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(374,45): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(374,45): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(374,45): warning C4244:         ]
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(378,33): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(378,33): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(378,33): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(378,33): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(378,33): warning C4244:         ]
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(412,45): warning C4244: '+=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(412,45): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(412,45): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(412,45): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(412,45): warning C4244:         ]
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(416,40): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(416,40): warning C4244:         with
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(416,40): warning C4244:         [
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(416,40): warning C4244:             T=int
+C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\game.cpp(416,40): warning C4244:         ]
+  main.cpp
+  target.cpp
+  Generating Code...
+  aimTrainer.vcxproj -> C:\Users\linoi\scripts\games\sfmlProjects\aimTrainer\x64\Debug\aimTrainer.exe
