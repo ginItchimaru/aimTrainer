@@ -49,7 +49,7 @@ void Game::initWindow() {
 
 void Game::initWorld() {
 
-	if (!this->backgroundTexture.loadFromFile("textures/spaceBackground3000x3000.png"))
+	if (!this->backgroundTexture.loadFromFile("textures/spaceBackground6000x6000.png"))
 		std::cout << "ERROR::GAME::Failed to load background texture" << "\n";
 
 	this->background.setTexture(this->backgroundTexture);
@@ -131,6 +131,8 @@ void Game::pollEvents() {
 					this->frameBackground.width = 1920.f;
 					this->frameBackground.height = 1080.f;
 					this->background.setTextureRect(this->frameBackground);
+					this->backgroundWidth = 6000.f;
+					this->backgroundHeight = 6000.f;
 
 					// mouse
 					this->gameStart = true;
@@ -150,6 +152,8 @@ void Game::pollEvents() {
 					this->frameBackground.width = 800.f;
 					this->frameBackground.height = 800.f;
 					this->background.setTextureRect(this->frameBackground);
+					this->backgroundWidth = 3000.f;
+					this->backgroundHeight = 3000.f;
 
 					// mouse
 					this->gameStart = true;
@@ -176,60 +180,61 @@ void Game::spawnTargets(sf::RenderWindow& window) {
 	float minY = 0.f;
 	float maxY = 0.f;
 
+	float maxLeft = 0.f;
+	float maxTop = 0.f;
+
+	// determine maxLeft and maxTop based on window mode
 	if (!this->fullscreen) {
+		maxLeft = 2200.f - this->frameBackground.width / 2;
+		maxTop = 2200.f - this->frameBackground.height / 2;
+	}
+	else {
+		maxLeft = 4080.f - this->frameBackground.width / 2;
+		maxTop = 4920.f - this->frameBackground.height / 2;
+	}
 
-		// X
-		if (this->frameBackground.left < this->frameBackground.width / 2) {
+	//std::cout << "frameBackground.left: " << this->frameBackground.left << "	" << "frameBackground.top: " << this->frameBackground.top << "\n";
 
-			minX = 800.f;
-			maxX = 1200.f;
+	// calculate Y boundaries
+	if (this->frameBackground.left < this->frameBackground.width / 2) {
 
-		}
-		// 2200.f = max frameBackground.left - border = 400.f
-		else if (this->frameBackground.left > this->frameBackground.width / 2 && this->frameBackground.left < 1800.f) {
+		minX = this->frameBackground.width;
+		maxX = this->frameBackground.width + this->frameBackground.width / 2;
 
-			minX = 0.f;
-			maxX = 800.f;
+	}
+	// 2200.f = max frameBackground.left - border = 400.f
+	else if (this->frameBackground.left > this->frameBackground.width / 2 && this->frameBackground.left < maxLeft) {
 
-		}
-		else {
-
-			minX = -800.f;
-			maxX = 0.f;
-
-		}
-
-		// Y
-		if (this->frameBackground.top < this->frameBackground.height / 2) {
-
-			minY = 800.f;
-			maxY = 1200.f;
-
-		}
-		else if (this->frameBackground.top > this->frameBackground.height / 2 && this->frameBackground.top < 1800.f) {
-
-			minY = 0.f;
-			maxY = 800.f;
-
-		}
-		else {
-
-			minY = -800.f;
-			maxY = 0.f;
-
-		}
+		minX = 0.f;
+		maxX = this->frameBackground.width;
 
 	}
 	else {
 
-		minX = this->spawnBorderX - this->frameBackground.left;
-		maxX = this->frameBackground.left + this->frameBackground.width - this->spawnBorderX;
-		minY = this->spawnBorderY - this->frameBackground.top;
-		maxY = this->frameBackground.top + -this->spawnBorderY;
+		minX = -this->frameBackground.width;
+		maxX = this->frameBackground.width / 2;
 
 	}
 
-	//std::cout << "maxX: " << maxX << "	" << "maxY: " << maxY << "\n";
+	// calculate Y boundaries
+	if (this->frameBackground.top < this->frameBackground.height / 2) {
+
+		minY = this->frameBackground.height;
+		maxY = this->frameBackground.height + this->frameBackground.height / 2;
+
+	}
+	else if (this->frameBackground.top > this->frameBackground.height / 2 && this->frameBackground.top < maxTop) {
+
+		minY = 0.f;
+		maxY = this->frameBackground.height;
+
+	}
+	else {
+
+		minY = -this->frameBackground.height;
+		maxY = this->frameBackground.height / 2;
+
+	}
 	
 	float randX, randY;
 
@@ -250,7 +255,7 @@ void Game::spawnTargets(sf::RenderWindow& window) {
 
 bool Game::isValidSpawn(float newX, float newY) const {
 	
-	// Check if the new target is at least 50 units apart from the previous ones
+	// check if the new target is at least 50 units apart from the previous ones
 	for (const auto& target : this->targets) {
 		
 		float distance = std::sqrt(std::pow(newX - target->getBounds().left, 2) + std::pow(newY - target->getBounds().top, 2));
@@ -296,8 +301,6 @@ void Game::updateCrosshair() {
 	this->crosshairPosY = static_cast<float>(this->frameBackground.height / 2) - this->crosshair.getGlobalBounds().height / 2;
 
 	this->crosshair.setPosition(this->crosshairPosX, this->crosshairPosY);
-
-	std::cout << "frameBackground.left: " << this->frameBackground.left << "	" << "frameBackground.top: " << this->frameBackground.top << "\n";
 
 	// move background and targets
 	// in contrast to mouse position
