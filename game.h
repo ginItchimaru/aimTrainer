@@ -27,10 +27,6 @@ private:
 	float backgroundHeight;
 
 	//Spawning Targets
-	float spawnBorderX;
-	float spawnBorderY;
-	float spawnBorderFullscreenX;
-	float spawnBorderFullscreenY;
 	float targetGap;
 
 	//Crossair

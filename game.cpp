@@ -11,17 +11,12 @@ void Game::initVariables() {
 	this->fullscreen = false;
 
 	//Spawning targets
-	this->spawnBorderY = 600.f;
-	this->spawnBorderX = 600.f;
-	this->spawnBorderFullscreenX = 0.f;
-	this->spawnBorderFullscreenY = 0.f;
-
 	this->targetGap = 100.f;
 
 	//Mouse
 	this->gameStart = true;
 
-	this->mouseSensScale = 1.f;
+	this->mouseSensScale = 0.9f;
 
 	//Crosshair
 	this->crosshairScale.y = 0.1f;
@@ -311,7 +306,7 @@ void Game::updateCrosshair() {
 			
 			// move background
 			float mouseMovedX = this->frameBackground.width / 2 - this->mousePosFloat.x;
-			this->frameBackground.left -= mouseMovedX * mouseSensScale;
+			this->frameBackground.left -= mouseMovedX /** this->mouseSensScale*/;
 			
 			// background border
 			if (this->frameBackground.left < 0.f)
@@ -326,7 +321,7 @@ void Game::updateCrosshair() {
 				// targets
 				for (size_t i = 0; i < this->targets.size(); i++) {
 
-					float newTargetPosX = this->targets[i]->getPosition().x + (mouseMovedX * 0.9f);
+					float newTargetPosX = this->targets[i]->getPosition().x + (mouseMovedX * this->mouseSensScale);
 					this->targets[i]->setPosition(newTargetPosX, this->targets[i]->getPosition().y);
 
 				}
@@ -334,7 +329,7 @@ void Game::updateCrosshair() {
 				// animations
 				for (size_t i = 0; i < this->animations.size(); i++) {
 
-					float newAnimationPosX = this->animations[i]->getPosition().x + (mouseMovedX * 0.9f);
+					float newAnimationPosX = this->animations[i]->getPosition().x + (mouseMovedX * this->mouseSensScale);
 					this->animations[i]->setPosition(newAnimationPosX, this->animations[i]->getPosition().y);
 
 				}
@@ -349,7 +344,7 @@ void Game::updateCrosshair() {
 			
 			// move background
 			float mouseMovedX = this->mousePosFloat.x - this->frameBackground.width / 2;
-			this->frameBackground.left += mouseMovedX * mouseSensScale;
+			this->frameBackground.left += mouseMovedX /** this->mouseSensScale*/;
 			
 			// background border
 			if (this->frameBackground.left > this->backgroundWidth - this->frameBackground.width)
@@ -364,7 +359,7 @@ void Game::updateCrosshair() {
 				// targets
 				for (size_t i = 0; i < this->targets.size(); i++) {
 
-					float newTargetPosX = this->targets[i]->getPosition().x - (mouseMovedX * 0.9f);
+					float newTargetPosX = this->targets[i]->getPosition().x - (mouseMovedX * this->mouseSensScale);
 					this->targets[i]->setPosition(newTargetPosX, this->targets[i]->getPosition().y);
 
 				}
@@ -372,7 +367,7 @@ void Game::updateCrosshair() {
 				// animations
 				for (size_t i = 0; i < this->animations.size(); i++) {
 
-					float newAnimationPosX = this->animations[i]->getPosition().x - (mouseMovedX * 0.9f);
+					float newAnimationPosX = this->animations[i]->getPosition().x - (mouseMovedX * this->mouseSensScale);
 					this->animations[i]->setPosition(newAnimationPosX, this->animations[i]->getPosition().y);
 
 				}
@@ -388,7 +383,7 @@ void Game::updateCrosshair() {
 			
 			// move background
 			float mouseMovedY = this->frameBackground.height / 2 - this->mousePosFloat.y;
-			this->frameBackground.top -= mouseMovedY * mouseSensScale;
+			this->frameBackground.top -= mouseMovedY /** this->mouseSensScale*/;
 			
 			// background border
 			if (this->frameBackground.top < 0.f)
@@ -403,7 +398,7 @@ void Game::updateCrosshair() {
 				// targets
 				for (size_t i = 0; i < this->targets.size(); i++) {
 
-					float newTargetPosY = this->targets[i]->getPosition().y + (mouseMovedY * 0.9f);
+					float newTargetPosY = this->targets[i]->getPosition().y + (mouseMovedY * this->mouseSensScale);
 					this->targets[i]->setPosition(this->targets[i]->getPosition().x, newTargetPosY);
 
 				}
@@ -411,7 +406,7 @@ void Game::updateCrosshair() {
 				// animations
 				for (size_t i = 0; i < this->animations.size(); i++) {
 
-					float newAnimationPosY = this->animations[i]->getPosition().y + (mouseMovedY * 0.9f);
+					float newAnimationPosY = this->animations[i]->getPosition().y + (mouseMovedY * this->mouseSensScale);
 					this->animations[i]->setPosition(this->animations[i]->getPosition().x, newAnimationPosY);
 
 				}
@@ -426,7 +421,7 @@ void Game::updateCrosshair() {
 			
 			// move background
 			float mouseMovedY = this->mousePosFloat.y - this->frameBackground.height / 2;
-			this->frameBackground.top += mouseMovedY * mouseSensScale;
+			this->frameBackground.top += mouseMovedY /** this->mouseSensScale*/;
 			
 			// background border
 			if (this->frameBackground.top > this->backgroundHeight - this->frameBackground.height)
@@ -441,7 +436,7 @@ void Game::updateCrosshair() {
 				// targets
 				for (size_t i = 0; i < this->targets.size(); i++) {
 
-					float newTargetPosY = this->targets[i]->getPosition().y - (mouseMovedY * 0.9f);
+					float newTargetPosY = this->targets[i]->getPosition().y - (mouseMovedY * this->mouseSensScale);
 					this->targets[i]->setPosition(this->targets[i]->getPosition().x, newTargetPosY);
 
 				}
@@ -449,7 +444,7 @@ void Game::updateCrosshair() {
 				// animations
 				for (size_t i = 0; i < this->animations.size(); i++) {
 
-					float newAnimationPosY = this->animations[i]->getPosition().y - (mouseMovedY * 0.9f);
+					float newAnimationPosY = this->animations[i]->getPosition().y - (mouseMovedY * this->mouseSensScale);
 					this->animations[i]->setPosition(this->animations[i]->getPosition().x, newAnimationPosY);
 
 				}
@@ -506,30 +501,13 @@ void Game::updateTargetsAndAnimation() {
 		
 		this->changedScreen = false;
 
-		for (size_t i = 0; i < this->targets.size(); /* no increment here */) {
-			
-			if (!this->fullscreen) {
-				// Check if the target is outside the valid spawn range
-				if (this->targets[i]->getPosition().x > this->window->getSize().x - this->spawnBorderX ||
-					this->targets[i]->getPosition().y > this->window->getSize().y - this->spawnBorderY) {
-					
-					delete this->targets[i];
-					this->targets.erase(this->targets.begin() + i);
-				
-				}
-				else {
-					// Only increment when not erasing a target
-					++i;
-				}
-			
-			}
-			else {
-				// Handle deletion for fullscreen (windowed targets are already deleted)
-				delete this->targets[i];
-				this->targets.erase(this->targets.begin() + i);
-			
-			}
-		
+		for (size_t i = 0; i < this->targets.size();) {
+
+			delete this->targets[i];
+			this->targets.erase(this->targets.begin() + i);
+
+			// don't increment `i`, since the elements have shifted left.
+			// simply continue to the next iteration, where `i` remains the same.
 		}
 	
 	}
@@ -547,7 +525,7 @@ void Game::updateTargetsAndAnimation() {
 			delete this->animations[i];
 			this->animations.erase(this->animations.begin() + i);
 			
-			--i;
+			--i; // decrement `i` to recheck the new element at position `i`
 		}
 		
 	}
